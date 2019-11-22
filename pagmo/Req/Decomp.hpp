@@ -51,7 +51,7 @@ class Decomp {
      */
     public:
     Decomp(){};
-    Decomp(int dim, Hypergraph hypergraph);
+    Decomp(int dim, const Hypergraph& hypergraph);
     // Fitness computation
     vector_double fitness(const vector_double &dv) const;
     // Box-bounds
@@ -86,10 +86,5 @@ class Decomp {
 };
 
 } // namespace pagmo
-
-
-
-
-
 
 #endif

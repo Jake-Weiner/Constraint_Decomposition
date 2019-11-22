@@ -23,18 +23,15 @@ int main(int argc, const char** argv)
     vector<double> constraints = {0,0,0,0,0};
     vector<double> constraints2 = {1,1,1,1,1};
     vector<double> constraints3 = {0,0,0,0,0};
-    HG.partitionWithRelaxation(constraints);
-    HG.printPartitions();
-    cout << "Largest Partition is size - " << HG.getLargestPartition() << endl;
+    
+   
+    cout << "Largest Partition is size - " << HG.getLargestPartition(constraints,true) << endl;
     HG.partitionWithRelaxation(constraints2);
-    HG.printPartitions();
-    cout << "Largest Partition is size - " << HG.getLargestPartition() << endl;
+  
+    cout << "Largest Partition is size - " << HG.getLargestPartition(constraints2,true) << endl;
     HG.partitionWithRelaxation(constraints3);
-    HG.printPartitions();
-    cout << "Largest Partition is size - " << HG.getLargestPartition() << endl;
    
-   
-
+    cout << "Largest Partition is size - " << HG.getLargestPartition(constraints3,true) << endl;
    
    
     Decomp udp = Decomp(HG.getNumEdges(),HG);
@@ -45,9 +42,9 @@ int main(int argc, const char** argv)
     // problem prob{Decomp(HG.getNumEdges(),HG)};
 
     // 2 - Instantiate a pagmo algorithm
-    algorithm algo{nsga2()};
+    algorithm algo{nsga2(100)};
 
-    population pop{prob, 3};
+    population pop{prob, 64};
 
     // 4 - Evolve the population
     pop = algo.evolve(pop);

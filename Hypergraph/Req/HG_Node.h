@@ -24,7 +24,7 @@ public:
     void addEdgeIdx(int edge_idx);
     int getNodeIdx();
     vector<int> getEdgeIdxs();
-
+    void removeEdgeIdx(int edge_idx);
 private:
     int node_idx;
     vector<int> edge_idxs;

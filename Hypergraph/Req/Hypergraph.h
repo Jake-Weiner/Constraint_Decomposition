@@ -27,8 +27,9 @@ public:
     void printEdges();
     void printNodes();
     void initHypergraph(string filename);
-    int getLargestPartition();
-    void printPartitions();
+    int getLargestPartition(const vector<double>& constraints_selected, bool print = false);
+    int getLargestPartition(bool print = false);
+    
     void partitionWithRelaxation(vector<double> constraints_selected);
     void partitionWithoutRelaxation();
     int getNumEdges(){
@@ -36,20 +37,21 @@ public:
     };
     
 private:
-    vector<int> findPartition(vector<HG_Edge>& edges_considered, HG_Node starting_node, vector<bool>& edge_idx_seen, vector<bool>& node_idx_seen);
+    vector<int> findPartition(const vector<HG_Edge>& edges_considered, const vector<HG_Node>& nodes_considered, 
+    HG_Node starting_node, vector<bool>& node_idx_seen);
     int num_nodes;
     int num_edges;
     vector<HG_Edge> HG_edges;
-    vector<HG_Edge> Non_relaxed_edges;
     vector<HG_Node> HG_nodes;
-    vector<vector<int>> current_partitions;
+    void printPartitions(vector<vector<int>> partitions);
     void setNumEdges(int num_edges);
     bool constraintCheck(HG_Edge constraint_to_check);
     void setHGEdgesSize(int size);
     void setHGNodesSize(int size);
     void initNodes(int size);
     void initNonRelaxedEdges();
-    void identifyPartitions(bool relaxed_edges);
+    vector<vector<int>> identifyPartitions(const vector<HG_Edge>& edges, const vector<HG_Node>& nodes);
+
 
 };
 

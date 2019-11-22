@@ -24,7 +24,7 @@ double sum(const vector_double& input)
     return sum;
 }
 
-Decomp::Decomp(int dim, Hypergraph hypergraph) : m_dim(dim), HG(hypergraph)
+Decomp::Decomp(int dim, const Hypergraph& hypergraph) : m_dim(dim), HG(hypergraph)
 {
     if (dim < 1u) {
         pagmo_throw(std::invalid_argument,
@@ -38,7 +38,7 @@ vector_double Decomp::fitness(const vector_double& dv) const
     vector_double objective;
     // updateHG(dv);
     HG.partitionWithRelaxation(dv);
-    double largest_partition = double(HG.getLargestPartition());
+    double largest_partition = double(HG.getLargestPartition(dv, false));
     double sum_x = sum(dv);
     objective.push_back(largest_partition);
     objective.push_back(sum_x);
@@ -47,10 +47,9 @@ vector_double Decomp::fitness(const vector_double& dv) const
 
 std::pair<vector_double, vector_double> Decomp::get_bounds() const
 {
-
     vector_double lb(m_dim, 0);
     vector_double ub(m_dim, 1);
-    return { lb, ub };
+    return {lb, ub};
 }
 
 vector_double::size_type Decomp::get_nix() const
