@@ -96,9 +96,22 @@ CMakeFiles/main_test.dir/Hypergraph/Hypergraph.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main_test.dir/Hypergraph/Hypergraph.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jake/PhD/Decomposition/Constraint_Decomposition/Hypergraph/Hypergraph.cpp -o CMakeFiles/main_test.dir/Hypergraph/Hypergraph.cpp.s
 
+CMakeFiles/main_test.dir/Hypergraph/Hypergraph_Fileparser.cpp.o: CMakeFiles/main_test.dir/flags.make
+CMakeFiles/main_test.dir/Hypergraph/Hypergraph_Fileparser.cpp.o: Hypergraph/Hypergraph_Fileparser.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jake/PhD/Decomposition/Constraint_Decomposition/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/main_test.dir/Hypergraph/Hypergraph_Fileparser.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main_test.dir/Hypergraph/Hypergraph_Fileparser.cpp.o -c /home/jake/PhD/Decomposition/Constraint_Decomposition/Hypergraph/Hypergraph_Fileparser.cpp
+
+CMakeFiles/main_test.dir/Hypergraph/Hypergraph_Fileparser.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main_test.dir/Hypergraph/Hypergraph_Fileparser.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jake/PhD/Decomposition/Constraint_Decomposition/Hypergraph/Hypergraph_Fileparser.cpp > CMakeFiles/main_test.dir/Hypergraph/Hypergraph_Fileparser.cpp.i
+
+CMakeFiles/main_test.dir/Hypergraph/Hypergraph_Fileparser.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main_test.dir/Hypergraph/Hypergraph_Fileparser.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jake/PhD/Decomposition/Constraint_Decomposition/Hypergraph/Hypergraph_Fileparser.cpp -o CMakeFiles/main_test.dir/Hypergraph/Hypergraph_Fileparser.cpp.s
+
 CMakeFiles/main_test.dir/Hypergraph/HG_Edge.cpp.o: CMakeFiles/main_test.dir/flags.make
 CMakeFiles/main_test.dir/Hypergraph/HG_Edge.cpp.o: Hypergraph/HG_Edge.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jake/PhD/Decomposition/Constraint_Decomposition/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/main_test.dir/Hypergraph/HG_Edge.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jake/PhD/Decomposition/Constraint_Decomposition/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/main_test.dir/Hypergraph/HG_Edge.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main_test.dir/Hypergraph/HG_Edge.cpp.o -c /home/jake/PhD/Decomposition/Constraint_Decomposition/Hypergraph/HG_Edge.cpp
 
 CMakeFiles/main_test.dir/Hypergraph/HG_Edge.cpp.i: cmake_force
@@ -111,7 +124,7 @@ CMakeFiles/main_test.dir/Hypergraph/HG_Edge.cpp.s: cmake_force
 
 CMakeFiles/main_test.dir/Hypergraph/HG_Node.cpp.o: CMakeFiles/main_test.dir/flags.make
 CMakeFiles/main_test.dir/Hypergraph/HG_Node.cpp.o: Hypergraph/HG_Node.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jake/PhD/Decomposition/Constraint_Decomposition/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/main_test.dir/Hypergraph/HG_Node.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jake/PhD/Decomposition/Constraint_Decomposition/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/main_test.dir/Hypergraph/HG_Node.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main_test.dir/Hypergraph/HG_Node.cpp.o -c /home/jake/PhD/Decomposition/Constraint_Decomposition/Hypergraph/HG_Node.cpp
 
 CMakeFiles/main_test.dir/Hypergraph/HG_Node.cpp.i: cmake_force
@@ -127,6 +140,7 @@ main_test_OBJECTS = \
 "CMakeFiles/main_test.dir/main.cpp.o" \
 "CMakeFiles/main_test.dir/pagmo/Decomp.cpp.o" \
 "CMakeFiles/main_test.dir/Hypergraph/Hypergraph.cpp.o" \
+"CMakeFiles/main_test.dir/Hypergraph/Hypergraph_Fileparser.cpp.o" \
 "CMakeFiles/main_test.dir/Hypergraph/HG_Edge.cpp.o" \
 "CMakeFiles/main_test.dir/Hypergraph/HG_Node.cpp.o"
 
@@ -136,6 +150,7 @@ main_test_EXTERNAL_OBJECTS =
 main_test: CMakeFiles/main_test.dir/main.cpp.o
 main_test: CMakeFiles/main_test.dir/pagmo/Decomp.cpp.o
 main_test: CMakeFiles/main_test.dir/Hypergraph/Hypergraph.cpp.o
+main_test: CMakeFiles/main_test.dir/Hypergraph/Hypergraph_Fileparser.cpp.o
 main_test: CMakeFiles/main_test.dir/Hypergraph/HG_Edge.cpp.o
 main_test: CMakeFiles/main_test.dir/Hypergraph/HG_Node.cpp.o
 main_test: CMakeFiles/main_test.dir/build.make
@@ -143,7 +158,7 @@ main_test: /home/jake/.local/lib/libpagmo.so.1.0
 main_test: /home/jake/PhD/Edge_Disjoint/c++/boost_1_67_0/Build/lib/libboost_serialization.so
 main_test: /home/jake/PhD/Coding_Libraries/tbb/tbb2019_20191006oss/lib/intel64/gcc4.8/libtbb.so.2
 main_test: CMakeFiles/main_test.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jake/PhD/Decomposition/Constraint_Decomposition/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable main_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jake/PhD/Decomposition/Constraint_Decomposition/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable main_test"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main_test.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -30,7 +30,7 @@ link_directories("/home/jake/PhD/Coding_Libraries/cplex/lib/x86-64_linux/static_
 link_directories("/home/jake/PhD/Coding_Libraries/concert/lib/x86-64_linux/static_pic")
 link_directories("/home/jake/PhD/Edge_Disjoint/c++/boost_1_67_0/Build/lib")
 
-add_executable(main_test main.cpp ${Pagmo_src}/Decomp.cpp ${Hypergraph_src}/Hypergraph.cpp ${Hypergraph_src}/HG_Edge.cpp ${Hypergraph_src}/HG_Node.cpp)
+add_executable(main_test main.cpp ${Pagmo_src}/Decomp.cpp ${Hypergraph_src}/Hypergraph.cpp ${Hypergraph_src}/Hypergraph_Fileparser.cpp ${Hypergraph_src}/HG_Edge.cpp ${Hypergraph_src}/HG_Node.cpp)
 
 target_link_libraries(main_test Pagmo::pagmo concert ilocplex cplex m pthread dl)
 

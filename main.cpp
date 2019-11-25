@@ -1,5 +1,6 @@
 
 #include "Hypergraph.h"
+#include "Hypergraph_Fileparser.h"
 #include "Decomp.hpp"
 #include <fstream>
 #include <iostream>
@@ -9,27 +10,27 @@
 #include <pagmo/archipelago.hpp>
 #include <pagmo/problem.hpp>
 
-
-
 using namespace pagmo;
 
 int main(int argc, const char** argv)
 {
-    Hypergraph HG;
-    HG.initHypergraph("/home/jake/PhD/Decomposition/Constraint_Decomposition/Hypergraph/test_input");
+    Hypergraph_Fileparser HGFP;
+    HGFP.parse(file_type::USER, "/home/jake/PhD/Decomposition/Constraint_Decomposition/Hypergraph/test_input");
+    Hypergraph HG(HGFP.getHGEdges(),HGFP.getHGNodes());
+
 
     //HG.printEdges();
 
     vector<double> constraints = {0,0,0,0,0};
     vector<double> constraints2 = {1,1,1,1,1};
-    vector<double> constraints3 = {0,0,0,0,0};
+    vector<double> constraints3 = {0,0,1,1,0};
     
    
     cout << "Largest Partition is size - " << HG.getLargestPartition(constraints,true) << endl;
-    HG.partitionWithRelaxation(constraints2);
+   
   
     cout << "Largest Partition is size - " << HG.getLargestPartition(constraints2,true) << endl;
-    HG.partitionWithRelaxation(constraints3);
+  
    
     cout << "Largest Partition is size - " << HG.getLargestPartition(constraints3,true) << endl;
    

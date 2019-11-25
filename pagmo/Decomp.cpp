@@ -37,7 +37,6 @@ vector_double Decomp::fitness(const vector_double& dv) const
 
     vector_double objective;
     // updateHG(dv);
-    HG.partitionWithRelaxation(dv);
     double largest_partition = double(HG.getLargestPartition(dv, false));
     double sum_x = sum(dv);
     objective.push_back(largest_partition);

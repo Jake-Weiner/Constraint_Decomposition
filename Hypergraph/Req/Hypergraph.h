@@ -10,11 +10,14 @@ using namespace std;
 
 class Hypergraph {
 public:
-
+ 
     Hypergraph(){};
     Hypergraph(vector<HG_Edge> HG_edges, vector<HG_Node> HG_nodes){
+
         this->HG_edges = HG_edges;
         this->HG_nodes = HG_nodes;
+        this->num_nodes = HG_nodes.size();
+        this->num_edges = HG_edges.size();
     };
 
     Hypergraph(int num_edges, int num_nodes){
@@ -26,12 +29,10 @@ public:
     
     void printEdges();
     void printNodes();
-    void initHypergraph(string filename);
+
     int getLargestPartition(const vector<double>& constraints_selected, bool print = false);
     int getLargestPartition(bool print = false);
-    
-    void partitionWithRelaxation(vector<double> constraints_selected);
-    void partitionWithoutRelaxation();
+
     int getNumEdges(){
         return num_edges;
     };
@@ -51,6 +52,8 @@ private:
     void initNodes(int size);
     void initNonRelaxedEdges();
     vector<vector<int>> identifyPartitions(const vector<HG_Edge>& edges, const vector<HG_Node>& nodes);
+    void initHypergraphUser(string filename);
+    void initHypergraphMps(string filename);
 
 
 };
