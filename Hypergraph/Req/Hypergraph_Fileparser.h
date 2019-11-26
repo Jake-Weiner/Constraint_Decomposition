@@ -6,6 +6,8 @@
 #include "HG_Node.h"
 #include "HG_Edge.h"
 #include "Mps_Info.h"
+#include <boost/algorithm/string/predicate.hpp>
+#include <boost/lexical_cast.hpp>
 
 using namespace std;
 
@@ -26,6 +28,7 @@ public:
     vector<HG_Node> getHGNodes(){
         return HG_nodes;
     };
+    
 
 private:
 

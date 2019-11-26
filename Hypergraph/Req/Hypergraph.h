@@ -45,17 +45,7 @@ private:
     vector<HG_Edge> HG_edges;
     vector<HG_Node> HG_nodes;
     void printPartitions(vector<vector<int>> partitions);
-    void setNumEdges(int num_edges);
-    bool constraintCheck(HG_Edge constraint_to_check);
-    void setHGEdgesSize(int size);
-    void setHGNodesSize(int size);
-    void initNodes(int size);
-    void initNonRelaxedEdges();
     vector<vector<int>> identifyPartitions(const vector<HG_Edge>& edges, const vector<HG_Node>& nodes);
-    void initHypergraphUser(string filename);
-    void initHypergraphMps(string filename);
-
-
 };
 
 

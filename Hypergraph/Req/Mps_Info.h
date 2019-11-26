@@ -17,6 +17,8 @@ struct Mps_Info{
     unordered_map<string,int> constraint_to_idx;
     unordered_map<int,string> idx_to_var;
     unordered_map<string, int> var_to_idx;
+
+    
     string getConstraintName(int idx){
         if (idx_to_constraint.find(idx) != idx_to_constraint.end()){
             return idx_to_constraint[idx];
@@ -52,6 +54,49 @@ struct Mps_Info{
             cout << "variable name does not exist" << endl;
         }
         return -1;
+    }
+
+    void addConstraintName(string name, int idx){
+
+        cout << name << endl;
+        if (constraint_to_idx.find(name) == constraint_to_idx.end()){
+            constraint_to_idx[name] = idx ;
+        }
+        else{
+            cout << "constraint name already exists - MPS_Info.h" << endl;
+        }
+    }
+    void addVariableName(string name, int idx){
+        if (var_to_idx.find(name) == var_to_idx.end()){
+            var_to_idx[name] = idx ;
+        }
+        else{
+            cout << "variable name already exists - MPS_Info.h" << endl;
+        }
+    }
+
+    void addConstraintIdx(int idx, string name){
+        if (idx_to_constraint.find(idx) == idx_to_constraint.end()){
+            idx_to_constraint[idx] = name;
+        }
+        else{
+            cout << "constraint idx already exists - MPS_Info.h" << endl;
+        }
+    }
+    void addVariableIdx(int idx, string name){
+        if (idx_to_var.find(idx) == idx_to_var.end()){
+            idx_to_var[idx] = name ;
+        }
+        else{
+            cout << "variable idx already exists - MPS_Info.h" << endl;
+        }
+    }
+
+    bool varNameExists(string name){
+        if (var_to_idx.find(name) != var_to_idx.end()){
+            return true;
+        }
+        return false;
     }
 };
 

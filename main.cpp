@@ -15,43 +15,54 @@ using namespace pagmo;
 int main(int argc, const char** argv)
 {
     Hypergraph_Fileparser HGFP;
-    HGFP.parse(file_type::USER, "/home/jake/PhD/Decomposition/Constraint_Decomposition/Hypergraph/test_input");
+    HGFP.parse(file_type::MPS, "/home/jake/PhD/Decomposition/Constraint_Decomposition/Hypergraph/air05.mps");
+    // HGFP.parse(file_type::USER, "/home/jake/PhD/Decomposition/Constraint_Decomposition/Hypergraph/test_input");
+
     Hypergraph HG(HGFP.getHGEdges(),HGFP.getHGNodes());
+    //HG.printEdges();
 
 
     //HG.printEdges();
 
-    vector<double> constraints = {0,0,0,0,0};
-    vector<double> constraints2 = {1,1,1,1,1};
-    vector<double> constraints3 = {0,0,1,1,0};
+
     
    
-    cout << "Largest Partition is size - " << HG.getLargestPartition(constraints,true) << endl;
+    // cout << "Largest Partition is size - " << HG.getLargestPartition(constraints,true) << endl;
    
   
-    cout << "Largest Partition is size - " << HG.getLargestPartition(constraints2,true) << endl;
+    // cout << "Largest Partition is size - " << HG.getLargestPartition(constraints2,true) << endl;
   
    
-    cout << "Largest Partition is size - " << HG.getLargestPartition(constraints3,true) << endl;
+    // cout << "Largest Partition is size - " << HG.getLargestPartition(constraints3,true) << endl;
    
    
     Decomp udp = Decomp(HG.getNumEdges(),HG);
     problem prob{udp};
 
 
-    //;Decomp
-    // problem prob{Decomp(HG.getNumEdges(),HG)};
 
-    // 2 - Instantiate a pagmo algorithm
-    algorithm algo{nsga2(100)};
 
-    population pop{prob, 64};
+    // // 2 - Instantiate a pagmo algorithm
+    algorithm algo{nsga2(200)};
+
+    population pop{prob, 32};
 
     // 4 - Evolve the population
     pop = algo.evolve(pop);
 
     // 5 - Output the population
     std::cout << "The population: \n" << pop;
+
+    std::vector<vector<double>> x_vals =  pop.get_x();
+   std::vector<vector<double>> f_vals = pop.get_f();
+
+    for (auto& individuals_x : x_vals){
+        for (auto& x_val : individuals_x){
+            cout << x_val << " ";
+        }
+        cout << endl;
+    }
+   
 
     return 0;
 }

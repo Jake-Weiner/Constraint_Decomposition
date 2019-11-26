@@ -19,3 +19,14 @@ void HG_Edge::printNodes(){
     }
     cout << endl;
 }
+
+void HG_Edge::addNodeIdx(int node_idx_to_add){
+    
+    // if node already exists return
+    for (auto& node_val : node_idxs){
+        if (node_val == node_idx_to_add){
+            return;
+        }
+    }
+    node_idxs.push_back(node_idx_to_add);
+}

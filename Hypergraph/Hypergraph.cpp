@@ -94,23 +94,11 @@ vector<int> Hypergraph::findPartition(const vector<HG_Edge>& edges_considered, c
     return partition;
 }
 
-
-
-
-
-
-bool Hypergraph::constraintCheck(HG_Edge constraint_to_check)
-{
-    if (constraint_to_check.getNodeIdxs().size() != num_nodes) {
-        return false;
-    }
-    return true;
-}
-
-
 void Hypergraph::printEdges()
 {
+    
     for (auto& edge : HG_edges) {
+        cout << "edge no. " << edge.getEdgeIdx() << " ";
         edge.printNodes();
     }
 }
