@@ -116,7 +116,6 @@ void Hypergraph_Fileparser::parserMps(string filename)
             if ((line_split[0].compare("E") ==0)|| (line_split[0].compare("L") ==0)
                 || (line_split[0].compare("G"))==0) {
                 string constraint_name = line_split[1];
-                cout << "constraint name is " << constraint_name << endl;
                 MI.addConstraintName(constraint_name, current_constraint_number);
                 MI.addConstraintIdx(current_constraint_number, constraint_name);
                 HG_Edge constraint(current_constraint_number);

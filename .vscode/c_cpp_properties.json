@@ -5,6 +5,7 @@
             "includePath": [
                 "/home/jake/PhD/Edge_Disjoint/c++/boost_1_67_0/Build/include",
                 "/home/jake/PhD/Decomposition/Constraint_Decomposition/Hypergraph/Req",
+                "/home/jake/PhD/Decomposition/Constraint_Decomposition/DecompMIP/Req",
                 "/home/jake/PhD/Coding_Libraries/cplex/include",
                 "/home/jake/PhD/Coding_Libraries/concert/include",
                 "/home/jake/PhD/Coding_Libraries/pagmo2-2.11.4/include",

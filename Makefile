@@ -123,6 +123,33 @@ main_test/fast:
 	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/build
 .PHONY : main_test/fast
 
+DecompMIP/DecompMIP.o: DecompMIP/DecompMIP.cpp.o
+
+.PHONY : DecompMIP/DecompMIP.o
+
+# target to build an object file
+DecompMIP/DecompMIP.cpp.o:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/DecompMIP/DecompMIP.cpp.o
+.PHONY : DecompMIP/DecompMIP.cpp.o
+
+DecompMIP/DecompMIP.i: DecompMIP/DecompMIP.cpp.i
+
+.PHONY : DecompMIP/DecompMIP.i
+
+# target to preprocess a source file
+DecompMIP/DecompMIP.cpp.i:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/DecompMIP/DecompMIP.cpp.i
+.PHONY : DecompMIP/DecompMIP.cpp.i
+
+DecompMIP/DecompMIP.s: DecompMIP/DecompMIP.cpp.s
+
+.PHONY : DecompMIP/DecompMIP.s
+
+# target to generate assembly for a file
+DecompMIP/DecompMIP.cpp.s:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/DecompMIP/DecompMIP.cpp.s
+.PHONY : DecompMIP/DecompMIP.cpp.s
+
 Hypergraph/HG_Edge.o: Hypergraph/HG_Edge.cpp.o
 
 .PHONY : Hypergraph/HG_Edge.o
@@ -294,6 +321,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... main_test"
+	@echo "... DecompMIP/DecompMIP.o"
+	@echo "... DecompMIP/DecompMIP.i"
+	@echo "... DecompMIP/DecompMIP.s"
 	@echo "... Hypergraph/HG_Edge.o"
 	@echo "... Hypergraph/HG_Edge.i"
 	@echo "... Hypergraph/HG_Edge.s"
