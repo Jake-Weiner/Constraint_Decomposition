@@ -17,22 +17,18 @@ if (OPENMP_FOUND)
 endif()
 
 include_directories("/home/jake/PhD/Edge_Disjoint/c++/boost_1_67_0/Build/include")
-include_directories("/home/jake/PhD/Decomposition/Constraint_Decomposition/Hypergraph/Req")
 include_directories("/home/jake/PhD/Coding_Libraries/cplex/include")
 include_directories("/home/jake/PhD/Coding_Libraries/concert/include")
 include_directories("/home/jake/PhD/Coding_Libraries/pagmo2-2.11.4/include")
-include_directories("/home/jake/PhD/Decomposition/Constraint_Decomposition/pagmo/Req")
-include_directories("/home/jake/PhD/Decomposition/Constraint_Decomposition/DecompMIP/Req")
+include_directories("/home/jake/PhD/Decomposition/Constraint_Decomposition/include")
 
-set(Hypergraph_src "/home/jake/PhD/Decomposition/Constraint_Decomposition/Hypergraph")
-set(Pagmo_src "/home/jake/PhD/Decomposition/Constraint_Decomposition/pagmo")
-set(DecompMIP "/home/jake/PhD/Decomposition/Constraint_Decomposition/DecompMIP")
+set(src "/home/jake/PhD/Decomposition/Constraint_Decomposition/src")
 
 link_directories("/home/jake/PhD/Coding_Libraries/cplex/lib/x86-64_linux/static_pic")
 link_directories("/home/jake/PhD/Coding_Libraries/concert/lib/x86-64_linux/static_pic")
 link_directories("/home/jake/PhD/Edge_Disjoint/c++/boost_1_67_0/Build/lib")
 
-add_executable(main_test main.cpp ${DecompMIP}/DecompMIP.cpp ${Pagmo_src}/Decomp.cpp ${Hypergraph_src}/Hypergraph.cpp ${Hypergraph_src}/Hypergraph_Fileparser.cpp ${Hypergraph_src}/HG_Edge.cpp ${Hypergraph_src}/HG_Node.cpp)
+add_executable(main_test ${src}/main.cpp ${src}/anyoption.cpp ${src}/CpuTimer.cpp ${src}/LaPSO.cpp ${src}/ConDecomp_LaPSO_Connector.cpp ${src}/DecompMIP.cpp ${src}/Decomp.cpp ${src}/MIP_to_Hypergraph.cpp ${src}/Hypergraph.cpp ${src}/MIP_Fileparser.cpp ${src}/HG_Edge.cpp ${src}/HG_Node.cpp)
 
 target_link_libraries(main_test Pagmo::pagmo concert ilocplex cplex m pthread dl)
 

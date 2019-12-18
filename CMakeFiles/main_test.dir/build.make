@@ -57,123 +57,198 @@ include CMakeFiles/main_test.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/main_test.dir/flags.make
 
-CMakeFiles/main_test.dir/main.cpp.o: CMakeFiles/main_test.dir/flags.make
-CMakeFiles/main_test.dir/main.cpp.o: main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jake/PhD/Decomposition/Constraint_Decomposition/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/main_test.dir/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main_test.dir/main.cpp.o -c /home/jake/PhD/Decomposition/Constraint_Decomposition/main.cpp
+CMakeFiles/main_test.dir/src/main.cpp.o: CMakeFiles/main_test.dir/flags.make
+CMakeFiles/main_test.dir/src/main.cpp.o: src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jake/PhD/Decomposition/Constraint_Decomposition/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/main_test.dir/src/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main_test.dir/src/main.cpp.o -c /home/jake/PhD/Decomposition/Constraint_Decomposition/src/main.cpp
 
-CMakeFiles/main_test.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main_test.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jake/PhD/Decomposition/Constraint_Decomposition/main.cpp > CMakeFiles/main_test.dir/main.cpp.i
+CMakeFiles/main_test.dir/src/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main_test.dir/src/main.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jake/PhD/Decomposition/Constraint_Decomposition/src/main.cpp > CMakeFiles/main_test.dir/src/main.cpp.i
 
-CMakeFiles/main_test.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main_test.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jake/PhD/Decomposition/Constraint_Decomposition/main.cpp -o CMakeFiles/main_test.dir/main.cpp.s
+CMakeFiles/main_test.dir/src/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main_test.dir/src/main.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jake/PhD/Decomposition/Constraint_Decomposition/src/main.cpp -o CMakeFiles/main_test.dir/src/main.cpp.s
 
-CMakeFiles/main_test.dir/DecompMIP/DecompMIP.cpp.o: CMakeFiles/main_test.dir/flags.make
-CMakeFiles/main_test.dir/DecompMIP/DecompMIP.cpp.o: DecompMIP/DecompMIP.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jake/PhD/Decomposition/Constraint_Decomposition/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/main_test.dir/DecompMIP/DecompMIP.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main_test.dir/DecompMIP/DecompMIP.cpp.o -c /home/jake/PhD/Decomposition/Constraint_Decomposition/DecompMIP/DecompMIP.cpp
+CMakeFiles/main_test.dir/src/anyoption.cpp.o: CMakeFiles/main_test.dir/flags.make
+CMakeFiles/main_test.dir/src/anyoption.cpp.o: src/anyoption.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jake/PhD/Decomposition/Constraint_Decomposition/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/main_test.dir/src/anyoption.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main_test.dir/src/anyoption.cpp.o -c /home/jake/PhD/Decomposition/Constraint_Decomposition/src/anyoption.cpp
 
-CMakeFiles/main_test.dir/DecompMIP/DecompMIP.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main_test.dir/DecompMIP/DecompMIP.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jake/PhD/Decomposition/Constraint_Decomposition/DecompMIP/DecompMIP.cpp > CMakeFiles/main_test.dir/DecompMIP/DecompMIP.cpp.i
+CMakeFiles/main_test.dir/src/anyoption.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main_test.dir/src/anyoption.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jake/PhD/Decomposition/Constraint_Decomposition/src/anyoption.cpp > CMakeFiles/main_test.dir/src/anyoption.cpp.i
 
-CMakeFiles/main_test.dir/DecompMIP/DecompMIP.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main_test.dir/DecompMIP/DecompMIP.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jake/PhD/Decomposition/Constraint_Decomposition/DecompMIP/DecompMIP.cpp -o CMakeFiles/main_test.dir/DecompMIP/DecompMIP.cpp.s
+CMakeFiles/main_test.dir/src/anyoption.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main_test.dir/src/anyoption.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jake/PhD/Decomposition/Constraint_Decomposition/src/anyoption.cpp -o CMakeFiles/main_test.dir/src/anyoption.cpp.s
 
-CMakeFiles/main_test.dir/pagmo/Decomp.cpp.o: CMakeFiles/main_test.dir/flags.make
-CMakeFiles/main_test.dir/pagmo/Decomp.cpp.o: pagmo/Decomp.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jake/PhD/Decomposition/Constraint_Decomposition/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/main_test.dir/pagmo/Decomp.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main_test.dir/pagmo/Decomp.cpp.o -c /home/jake/PhD/Decomposition/Constraint_Decomposition/pagmo/Decomp.cpp
+CMakeFiles/main_test.dir/src/CpuTimer.cpp.o: CMakeFiles/main_test.dir/flags.make
+CMakeFiles/main_test.dir/src/CpuTimer.cpp.o: src/CpuTimer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jake/PhD/Decomposition/Constraint_Decomposition/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/main_test.dir/src/CpuTimer.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main_test.dir/src/CpuTimer.cpp.o -c /home/jake/PhD/Decomposition/Constraint_Decomposition/src/CpuTimer.cpp
 
-CMakeFiles/main_test.dir/pagmo/Decomp.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main_test.dir/pagmo/Decomp.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jake/PhD/Decomposition/Constraint_Decomposition/pagmo/Decomp.cpp > CMakeFiles/main_test.dir/pagmo/Decomp.cpp.i
+CMakeFiles/main_test.dir/src/CpuTimer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main_test.dir/src/CpuTimer.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jake/PhD/Decomposition/Constraint_Decomposition/src/CpuTimer.cpp > CMakeFiles/main_test.dir/src/CpuTimer.cpp.i
 
-CMakeFiles/main_test.dir/pagmo/Decomp.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main_test.dir/pagmo/Decomp.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jake/PhD/Decomposition/Constraint_Decomposition/pagmo/Decomp.cpp -o CMakeFiles/main_test.dir/pagmo/Decomp.cpp.s
+CMakeFiles/main_test.dir/src/CpuTimer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main_test.dir/src/CpuTimer.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jake/PhD/Decomposition/Constraint_Decomposition/src/CpuTimer.cpp -o CMakeFiles/main_test.dir/src/CpuTimer.cpp.s
 
-CMakeFiles/main_test.dir/Hypergraph/Hypergraph.cpp.o: CMakeFiles/main_test.dir/flags.make
-CMakeFiles/main_test.dir/Hypergraph/Hypergraph.cpp.o: Hypergraph/Hypergraph.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jake/PhD/Decomposition/Constraint_Decomposition/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/main_test.dir/Hypergraph/Hypergraph.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main_test.dir/Hypergraph/Hypergraph.cpp.o -c /home/jake/PhD/Decomposition/Constraint_Decomposition/Hypergraph/Hypergraph.cpp
+CMakeFiles/main_test.dir/src/LaPSO.cpp.o: CMakeFiles/main_test.dir/flags.make
+CMakeFiles/main_test.dir/src/LaPSO.cpp.o: src/LaPSO.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jake/PhD/Decomposition/Constraint_Decomposition/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/main_test.dir/src/LaPSO.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main_test.dir/src/LaPSO.cpp.o -c /home/jake/PhD/Decomposition/Constraint_Decomposition/src/LaPSO.cpp
 
-CMakeFiles/main_test.dir/Hypergraph/Hypergraph.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main_test.dir/Hypergraph/Hypergraph.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jake/PhD/Decomposition/Constraint_Decomposition/Hypergraph/Hypergraph.cpp > CMakeFiles/main_test.dir/Hypergraph/Hypergraph.cpp.i
+CMakeFiles/main_test.dir/src/LaPSO.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main_test.dir/src/LaPSO.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jake/PhD/Decomposition/Constraint_Decomposition/src/LaPSO.cpp > CMakeFiles/main_test.dir/src/LaPSO.cpp.i
 
-CMakeFiles/main_test.dir/Hypergraph/Hypergraph.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main_test.dir/Hypergraph/Hypergraph.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jake/PhD/Decomposition/Constraint_Decomposition/Hypergraph/Hypergraph.cpp -o CMakeFiles/main_test.dir/Hypergraph/Hypergraph.cpp.s
+CMakeFiles/main_test.dir/src/LaPSO.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main_test.dir/src/LaPSO.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jake/PhD/Decomposition/Constraint_Decomposition/src/LaPSO.cpp -o CMakeFiles/main_test.dir/src/LaPSO.cpp.s
 
-CMakeFiles/main_test.dir/Hypergraph/Hypergraph_Fileparser.cpp.o: CMakeFiles/main_test.dir/flags.make
-CMakeFiles/main_test.dir/Hypergraph/Hypergraph_Fileparser.cpp.o: Hypergraph/Hypergraph_Fileparser.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jake/PhD/Decomposition/Constraint_Decomposition/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/main_test.dir/Hypergraph/Hypergraph_Fileparser.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main_test.dir/Hypergraph/Hypergraph_Fileparser.cpp.o -c /home/jake/PhD/Decomposition/Constraint_Decomposition/Hypergraph/Hypergraph_Fileparser.cpp
+CMakeFiles/main_test.dir/src/ConDecomp_LaPSO_Connector.cpp.o: CMakeFiles/main_test.dir/flags.make
+CMakeFiles/main_test.dir/src/ConDecomp_LaPSO_Connector.cpp.o: src/ConDecomp_LaPSO_Connector.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jake/PhD/Decomposition/Constraint_Decomposition/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/main_test.dir/src/ConDecomp_LaPSO_Connector.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main_test.dir/src/ConDecomp_LaPSO_Connector.cpp.o -c /home/jake/PhD/Decomposition/Constraint_Decomposition/src/ConDecomp_LaPSO_Connector.cpp
 
-CMakeFiles/main_test.dir/Hypergraph/Hypergraph_Fileparser.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main_test.dir/Hypergraph/Hypergraph_Fileparser.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jake/PhD/Decomposition/Constraint_Decomposition/Hypergraph/Hypergraph_Fileparser.cpp > CMakeFiles/main_test.dir/Hypergraph/Hypergraph_Fileparser.cpp.i
+CMakeFiles/main_test.dir/src/ConDecomp_LaPSO_Connector.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main_test.dir/src/ConDecomp_LaPSO_Connector.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jake/PhD/Decomposition/Constraint_Decomposition/src/ConDecomp_LaPSO_Connector.cpp > CMakeFiles/main_test.dir/src/ConDecomp_LaPSO_Connector.cpp.i
 
-CMakeFiles/main_test.dir/Hypergraph/Hypergraph_Fileparser.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main_test.dir/Hypergraph/Hypergraph_Fileparser.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jake/PhD/Decomposition/Constraint_Decomposition/Hypergraph/Hypergraph_Fileparser.cpp -o CMakeFiles/main_test.dir/Hypergraph/Hypergraph_Fileparser.cpp.s
+CMakeFiles/main_test.dir/src/ConDecomp_LaPSO_Connector.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main_test.dir/src/ConDecomp_LaPSO_Connector.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jake/PhD/Decomposition/Constraint_Decomposition/src/ConDecomp_LaPSO_Connector.cpp -o CMakeFiles/main_test.dir/src/ConDecomp_LaPSO_Connector.cpp.s
 
-CMakeFiles/main_test.dir/Hypergraph/HG_Edge.cpp.o: CMakeFiles/main_test.dir/flags.make
-CMakeFiles/main_test.dir/Hypergraph/HG_Edge.cpp.o: Hypergraph/HG_Edge.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jake/PhD/Decomposition/Constraint_Decomposition/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/main_test.dir/Hypergraph/HG_Edge.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main_test.dir/Hypergraph/HG_Edge.cpp.o -c /home/jake/PhD/Decomposition/Constraint_Decomposition/Hypergraph/HG_Edge.cpp
+CMakeFiles/main_test.dir/src/DecompMIP.cpp.o: CMakeFiles/main_test.dir/flags.make
+CMakeFiles/main_test.dir/src/DecompMIP.cpp.o: src/DecompMIP.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jake/PhD/Decomposition/Constraint_Decomposition/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/main_test.dir/src/DecompMIP.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main_test.dir/src/DecompMIP.cpp.o -c /home/jake/PhD/Decomposition/Constraint_Decomposition/src/DecompMIP.cpp
 
-CMakeFiles/main_test.dir/Hypergraph/HG_Edge.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main_test.dir/Hypergraph/HG_Edge.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jake/PhD/Decomposition/Constraint_Decomposition/Hypergraph/HG_Edge.cpp > CMakeFiles/main_test.dir/Hypergraph/HG_Edge.cpp.i
+CMakeFiles/main_test.dir/src/DecompMIP.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main_test.dir/src/DecompMIP.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jake/PhD/Decomposition/Constraint_Decomposition/src/DecompMIP.cpp > CMakeFiles/main_test.dir/src/DecompMIP.cpp.i
 
-CMakeFiles/main_test.dir/Hypergraph/HG_Edge.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main_test.dir/Hypergraph/HG_Edge.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jake/PhD/Decomposition/Constraint_Decomposition/Hypergraph/HG_Edge.cpp -o CMakeFiles/main_test.dir/Hypergraph/HG_Edge.cpp.s
+CMakeFiles/main_test.dir/src/DecompMIP.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main_test.dir/src/DecompMIP.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jake/PhD/Decomposition/Constraint_Decomposition/src/DecompMIP.cpp -o CMakeFiles/main_test.dir/src/DecompMIP.cpp.s
 
-CMakeFiles/main_test.dir/Hypergraph/HG_Node.cpp.o: CMakeFiles/main_test.dir/flags.make
-CMakeFiles/main_test.dir/Hypergraph/HG_Node.cpp.o: Hypergraph/HG_Node.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jake/PhD/Decomposition/Constraint_Decomposition/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/main_test.dir/Hypergraph/HG_Node.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main_test.dir/Hypergraph/HG_Node.cpp.o -c /home/jake/PhD/Decomposition/Constraint_Decomposition/Hypergraph/HG_Node.cpp
+CMakeFiles/main_test.dir/src/Decomp.cpp.o: CMakeFiles/main_test.dir/flags.make
+CMakeFiles/main_test.dir/src/Decomp.cpp.o: src/Decomp.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jake/PhD/Decomposition/Constraint_Decomposition/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/main_test.dir/src/Decomp.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main_test.dir/src/Decomp.cpp.o -c /home/jake/PhD/Decomposition/Constraint_Decomposition/src/Decomp.cpp
 
-CMakeFiles/main_test.dir/Hypergraph/HG_Node.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main_test.dir/Hypergraph/HG_Node.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jake/PhD/Decomposition/Constraint_Decomposition/Hypergraph/HG_Node.cpp > CMakeFiles/main_test.dir/Hypergraph/HG_Node.cpp.i
+CMakeFiles/main_test.dir/src/Decomp.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main_test.dir/src/Decomp.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jake/PhD/Decomposition/Constraint_Decomposition/src/Decomp.cpp > CMakeFiles/main_test.dir/src/Decomp.cpp.i
 
-CMakeFiles/main_test.dir/Hypergraph/HG_Node.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main_test.dir/Hypergraph/HG_Node.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jake/PhD/Decomposition/Constraint_Decomposition/Hypergraph/HG_Node.cpp -o CMakeFiles/main_test.dir/Hypergraph/HG_Node.cpp.s
+CMakeFiles/main_test.dir/src/Decomp.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main_test.dir/src/Decomp.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jake/PhD/Decomposition/Constraint_Decomposition/src/Decomp.cpp -o CMakeFiles/main_test.dir/src/Decomp.cpp.s
+
+CMakeFiles/main_test.dir/src/MIP_to_Hypergraph.cpp.o: CMakeFiles/main_test.dir/flags.make
+CMakeFiles/main_test.dir/src/MIP_to_Hypergraph.cpp.o: src/MIP_to_Hypergraph.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jake/PhD/Decomposition/Constraint_Decomposition/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/main_test.dir/src/MIP_to_Hypergraph.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main_test.dir/src/MIP_to_Hypergraph.cpp.o -c /home/jake/PhD/Decomposition/Constraint_Decomposition/src/MIP_to_Hypergraph.cpp
+
+CMakeFiles/main_test.dir/src/MIP_to_Hypergraph.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main_test.dir/src/MIP_to_Hypergraph.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jake/PhD/Decomposition/Constraint_Decomposition/src/MIP_to_Hypergraph.cpp > CMakeFiles/main_test.dir/src/MIP_to_Hypergraph.cpp.i
+
+CMakeFiles/main_test.dir/src/MIP_to_Hypergraph.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main_test.dir/src/MIP_to_Hypergraph.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jake/PhD/Decomposition/Constraint_Decomposition/src/MIP_to_Hypergraph.cpp -o CMakeFiles/main_test.dir/src/MIP_to_Hypergraph.cpp.s
+
+CMakeFiles/main_test.dir/src/Hypergraph.cpp.o: CMakeFiles/main_test.dir/flags.make
+CMakeFiles/main_test.dir/src/Hypergraph.cpp.o: src/Hypergraph.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jake/PhD/Decomposition/Constraint_Decomposition/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/main_test.dir/src/Hypergraph.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main_test.dir/src/Hypergraph.cpp.o -c /home/jake/PhD/Decomposition/Constraint_Decomposition/src/Hypergraph.cpp
+
+CMakeFiles/main_test.dir/src/Hypergraph.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main_test.dir/src/Hypergraph.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jake/PhD/Decomposition/Constraint_Decomposition/src/Hypergraph.cpp > CMakeFiles/main_test.dir/src/Hypergraph.cpp.i
+
+CMakeFiles/main_test.dir/src/Hypergraph.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main_test.dir/src/Hypergraph.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jake/PhD/Decomposition/Constraint_Decomposition/src/Hypergraph.cpp -o CMakeFiles/main_test.dir/src/Hypergraph.cpp.s
+
+CMakeFiles/main_test.dir/src/MIP_Fileparser.cpp.o: CMakeFiles/main_test.dir/flags.make
+CMakeFiles/main_test.dir/src/MIP_Fileparser.cpp.o: src/MIP_Fileparser.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jake/PhD/Decomposition/Constraint_Decomposition/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/main_test.dir/src/MIP_Fileparser.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main_test.dir/src/MIP_Fileparser.cpp.o -c /home/jake/PhD/Decomposition/Constraint_Decomposition/src/MIP_Fileparser.cpp
+
+CMakeFiles/main_test.dir/src/MIP_Fileparser.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main_test.dir/src/MIP_Fileparser.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jake/PhD/Decomposition/Constraint_Decomposition/src/MIP_Fileparser.cpp > CMakeFiles/main_test.dir/src/MIP_Fileparser.cpp.i
+
+CMakeFiles/main_test.dir/src/MIP_Fileparser.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main_test.dir/src/MIP_Fileparser.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jake/PhD/Decomposition/Constraint_Decomposition/src/MIP_Fileparser.cpp -o CMakeFiles/main_test.dir/src/MIP_Fileparser.cpp.s
+
+CMakeFiles/main_test.dir/src/HG_Edge.cpp.o: CMakeFiles/main_test.dir/flags.make
+CMakeFiles/main_test.dir/src/HG_Edge.cpp.o: src/HG_Edge.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jake/PhD/Decomposition/Constraint_Decomposition/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/main_test.dir/src/HG_Edge.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main_test.dir/src/HG_Edge.cpp.o -c /home/jake/PhD/Decomposition/Constraint_Decomposition/src/HG_Edge.cpp
+
+CMakeFiles/main_test.dir/src/HG_Edge.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main_test.dir/src/HG_Edge.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jake/PhD/Decomposition/Constraint_Decomposition/src/HG_Edge.cpp > CMakeFiles/main_test.dir/src/HG_Edge.cpp.i
+
+CMakeFiles/main_test.dir/src/HG_Edge.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main_test.dir/src/HG_Edge.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jake/PhD/Decomposition/Constraint_Decomposition/src/HG_Edge.cpp -o CMakeFiles/main_test.dir/src/HG_Edge.cpp.s
+
+CMakeFiles/main_test.dir/src/HG_Node.cpp.o: CMakeFiles/main_test.dir/flags.make
+CMakeFiles/main_test.dir/src/HG_Node.cpp.o: src/HG_Node.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jake/PhD/Decomposition/Constraint_Decomposition/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/main_test.dir/src/HG_Node.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main_test.dir/src/HG_Node.cpp.o -c /home/jake/PhD/Decomposition/Constraint_Decomposition/src/HG_Node.cpp
+
+CMakeFiles/main_test.dir/src/HG_Node.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main_test.dir/src/HG_Node.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jake/PhD/Decomposition/Constraint_Decomposition/src/HG_Node.cpp > CMakeFiles/main_test.dir/src/HG_Node.cpp.i
+
+CMakeFiles/main_test.dir/src/HG_Node.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main_test.dir/src/HG_Node.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jake/PhD/Decomposition/Constraint_Decomposition/src/HG_Node.cpp -o CMakeFiles/main_test.dir/src/HG_Node.cpp.s
 
 # Object files for target main_test
 main_test_OBJECTS = \
-"CMakeFiles/main_test.dir/main.cpp.o" \
-"CMakeFiles/main_test.dir/DecompMIP/DecompMIP.cpp.o" \
-"CMakeFiles/main_test.dir/pagmo/Decomp.cpp.o" \
-"CMakeFiles/main_test.dir/Hypergraph/Hypergraph.cpp.o" \
-"CMakeFiles/main_test.dir/Hypergraph/Hypergraph_Fileparser.cpp.o" \
-"CMakeFiles/main_test.dir/Hypergraph/HG_Edge.cpp.o" \
-"CMakeFiles/main_test.dir/Hypergraph/HG_Node.cpp.o"
+"CMakeFiles/main_test.dir/src/main.cpp.o" \
+"CMakeFiles/main_test.dir/src/anyoption.cpp.o" \
+"CMakeFiles/main_test.dir/src/CpuTimer.cpp.o" \
+"CMakeFiles/main_test.dir/src/LaPSO.cpp.o" \
+"CMakeFiles/main_test.dir/src/ConDecomp_LaPSO_Connector.cpp.o" \
+"CMakeFiles/main_test.dir/src/DecompMIP.cpp.o" \
+"CMakeFiles/main_test.dir/src/Decomp.cpp.o" \
+"CMakeFiles/main_test.dir/src/MIP_to_Hypergraph.cpp.o" \
+"CMakeFiles/main_test.dir/src/Hypergraph.cpp.o" \
+"CMakeFiles/main_test.dir/src/MIP_Fileparser.cpp.o" \
+"CMakeFiles/main_test.dir/src/HG_Edge.cpp.o" \
+"CMakeFiles/main_test.dir/src/HG_Node.cpp.o"
 
 # External object files for target main_test
 main_test_EXTERNAL_OBJECTS =
 
-main_test: CMakeFiles/main_test.dir/main.cpp.o
-main_test: CMakeFiles/main_test.dir/DecompMIP/DecompMIP.cpp.o
-main_test: CMakeFiles/main_test.dir/pagmo/Decomp.cpp.o
-main_test: CMakeFiles/main_test.dir/Hypergraph/Hypergraph.cpp.o
-main_test: CMakeFiles/main_test.dir/Hypergraph/Hypergraph_Fileparser.cpp.o
-main_test: CMakeFiles/main_test.dir/Hypergraph/HG_Edge.cpp.o
-main_test: CMakeFiles/main_test.dir/Hypergraph/HG_Node.cpp.o
+main_test: CMakeFiles/main_test.dir/src/main.cpp.o
+main_test: CMakeFiles/main_test.dir/src/anyoption.cpp.o
+main_test: CMakeFiles/main_test.dir/src/CpuTimer.cpp.o
+main_test: CMakeFiles/main_test.dir/src/LaPSO.cpp.o
+main_test: CMakeFiles/main_test.dir/src/ConDecomp_LaPSO_Connector.cpp.o
+main_test: CMakeFiles/main_test.dir/src/DecompMIP.cpp.o
+main_test: CMakeFiles/main_test.dir/src/Decomp.cpp.o
+main_test: CMakeFiles/main_test.dir/src/MIP_to_Hypergraph.cpp.o
+main_test: CMakeFiles/main_test.dir/src/Hypergraph.cpp.o
+main_test: CMakeFiles/main_test.dir/src/MIP_Fileparser.cpp.o
+main_test: CMakeFiles/main_test.dir/src/HG_Edge.cpp.o
+main_test: CMakeFiles/main_test.dir/src/HG_Node.cpp.o
 main_test: CMakeFiles/main_test.dir/build.make
 main_test: /home/jake/.local/lib/libpagmo.so.1.0
 main_test: /home/jake/PhD/Edge_Disjoint/c++/boost_1_67_0/Build/lib/libboost_serialization.so
 main_test: /home/jake/PhD/Coding_Libraries/tbb/tbb2019_20191006oss/lib/intel64/gcc4.8/libtbb.so.2
 main_test: CMakeFiles/main_test.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jake/PhD/Decomposition/Constraint_Decomposition/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable main_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jake/PhD/Decomposition/Constraint_Decomposition/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable main_test"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main_test.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

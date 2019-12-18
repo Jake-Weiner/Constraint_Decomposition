@@ -123,194 +123,329 @@ main_test/fast:
 	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/build
 .PHONY : main_test/fast
 
-DecompMIP/DecompMIP.o: DecompMIP/DecompMIP.cpp.o
+src/ConDecomp_LaPSO_Connector.o: src/ConDecomp_LaPSO_Connector.cpp.o
 
-.PHONY : DecompMIP/DecompMIP.o
-
-# target to build an object file
-DecompMIP/DecompMIP.cpp.o:
-	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/DecompMIP/DecompMIP.cpp.o
-.PHONY : DecompMIP/DecompMIP.cpp.o
-
-DecompMIP/DecompMIP.i: DecompMIP/DecompMIP.cpp.i
-
-.PHONY : DecompMIP/DecompMIP.i
-
-# target to preprocess a source file
-DecompMIP/DecompMIP.cpp.i:
-	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/DecompMIP/DecompMIP.cpp.i
-.PHONY : DecompMIP/DecompMIP.cpp.i
-
-DecompMIP/DecompMIP.s: DecompMIP/DecompMIP.cpp.s
-
-.PHONY : DecompMIP/DecompMIP.s
-
-# target to generate assembly for a file
-DecompMIP/DecompMIP.cpp.s:
-	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/DecompMIP/DecompMIP.cpp.s
-.PHONY : DecompMIP/DecompMIP.cpp.s
-
-Hypergraph/HG_Edge.o: Hypergraph/HG_Edge.cpp.o
-
-.PHONY : Hypergraph/HG_Edge.o
+.PHONY : src/ConDecomp_LaPSO_Connector.o
 
 # target to build an object file
-Hypergraph/HG_Edge.cpp.o:
-	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/Hypergraph/HG_Edge.cpp.o
-.PHONY : Hypergraph/HG_Edge.cpp.o
+src/ConDecomp_LaPSO_Connector.cpp.o:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/ConDecomp_LaPSO_Connector.cpp.o
+.PHONY : src/ConDecomp_LaPSO_Connector.cpp.o
 
-Hypergraph/HG_Edge.i: Hypergraph/HG_Edge.cpp.i
+src/ConDecomp_LaPSO_Connector.i: src/ConDecomp_LaPSO_Connector.cpp.i
 
-.PHONY : Hypergraph/HG_Edge.i
+.PHONY : src/ConDecomp_LaPSO_Connector.i
 
 # target to preprocess a source file
-Hypergraph/HG_Edge.cpp.i:
-	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/Hypergraph/HG_Edge.cpp.i
-.PHONY : Hypergraph/HG_Edge.cpp.i
+src/ConDecomp_LaPSO_Connector.cpp.i:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/ConDecomp_LaPSO_Connector.cpp.i
+.PHONY : src/ConDecomp_LaPSO_Connector.cpp.i
 
-Hypergraph/HG_Edge.s: Hypergraph/HG_Edge.cpp.s
+src/ConDecomp_LaPSO_Connector.s: src/ConDecomp_LaPSO_Connector.cpp.s
 
-.PHONY : Hypergraph/HG_Edge.s
+.PHONY : src/ConDecomp_LaPSO_Connector.s
 
 # target to generate assembly for a file
-Hypergraph/HG_Edge.cpp.s:
-	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/Hypergraph/HG_Edge.cpp.s
-.PHONY : Hypergraph/HG_Edge.cpp.s
+src/ConDecomp_LaPSO_Connector.cpp.s:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/ConDecomp_LaPSO_Connector.cpp.s
+.PHONY : src/ConDecomp_LaPSO_Connector.cpp.s
 
-Hypergraph/HG_Node.o: Hypergraph/HG_Node.cpp.o
+src/CpuTimer.o: src/CpuTimer.cpp.o
 
-.PHONY : Hypergraph/HG_Node.o
+.PHONY : src/CpuTimer.o
 
 # target to build an object file
-Hypergraph/HG_Node.cpp.o:
-	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/Hypergraph/HG_Node.cpp.o
-.PHONY : Hypergraph/HG_Node.cpp.o
+src/CpuTimer.cpp.o:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/CpuTimer.cpp.o
+.PHONY : src/CpuTimer.cpp.o
 
-Hypergraph/HG_Node.i: Hypergraph/HG_Node.cpp.i
+src/CpuTimer.i: src/CpuTimer.cpp.i
 
-.PHONY : Hypergraph/HG_Node.i
+.PHONY : src/CpuTimer.i
 
 # target to preprocess a source file
-Hypergraph/HG_Node.cpp.i:
-	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/Hypergraph/HG_Node.cpp.i
-.PHONY : Hypergraph/HG_Node.cpp.i
+src/CpuTimer.cpp.i:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/CpuTimer.cpp.i
+.PHONY : src/CpuTimer.cpp.i
 
-Hypergraph/HG_Node.s: Hypergraph/HG_Node.cpp.s
+src/CpuTimer.s: src/CpuTimer.cpp.s
 
-.PHONY : Hypergraph/HG_Node.s
+.PHONY : src/CpuTimer.s
 
 # target to generate assembly for a file
-Hypergraph/HG_Node.cpp.s:
-	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/Hypergraph/HG_Node.cpp.s
-.PHONY : Hypergraph/HG_Node.cpp.s
+src/CpuTimer.cpp.s:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/CpuTimer.cpp.s
+.PHONY : src/CpuTimer.cpp.s
 
-Hypergraph/Hypergraph.o: Hypergraph/Hypergraph.cpp.o
+src/Decomp.o: src/Decomp.cpp.o
 
-.PHONY : Hypergraph/Hypergraph.o
+.PHONY : src/Decomp.o
 
 # target to build an object file
-Hypergraph/Hypergraph.cpp.o:
-	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/Hypergraph/Hypergraph.cpp.o
-.PHONY : Hypergraph/Hypergraph.cpp.o
+src/Decomp.cpp.o:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/Decomp.cpp.o
+.PHONY : src/Decomp.cpp.o
 
-Hypergraph/Hypergraph.i: Hypergraph/Hypergraph.cpp.i
+src/Decomp.i: src/Decomp.cpp.i
 
-.PHONY : Hypergraph/Hypergraph.i
+.PHONY : src/Decomp.i
 
 # target to preprocess a source file
-Hypergraph/Hypergraph.cpp.i:
-	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/Hypergraph/Hypergraph.cpp.i
-.PHONY : Hypergraph/Hypergraph.cpp.i
+src/Decomp.cpp.i:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/Decomp.cpp.i
+.PHONY : src/Decomp.cpp.i
 
-Hypergraph/Hypergraph.s: Hypergraph/Hypergraph.cpp.s
+src/Decomp.s: src/Decomp.cpp.s
 
-.PHONY : Hypergraph/Hypergraph.s
+.PHONY : src/Decomp.s
 
 # target to generate assembly for a file
-Hypergraph/Hypergraph.cpp.s:
-	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/Hypergraph/Hypergraph.cpp.s
-.PHONY : Hypergraph/Hypergraph.cpp.s
+src/Decomp.cpp.s:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/Decomp.cpp.s
+.PHONY : src/Decomp.cpp.s
 
-Hypergraph/Hypergraph_Fileparser.o: Hypergraph/Hypergraph_Fileparser.cpp.o
+src/DecompMIP.o: src/DecompMIP.cpp.o
 
-.PHONY : Hypergraph/Hypergraph_Fileparser.o
+.PHONY : src/DecompMIP.o
 
 # target to build an object file
-Hypergraph/Hypergraph_Fileparser.cpp.o:
-	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/Hypergraph/Hypergraph_Fileparser.cpp.o
-.PHONY : Hypergraph/Hypergraph_Fileparser.cpp.o
+src/DecompMIP.cpp.o:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/DecompMIP.cpp.o
+.PHONY : src/DecompMIP.cpp.o
 
-Hypergraph/Hypergraph_Fileparser.i: Hypergraph/Hypergraph_Fileparser.cpp.i
+src/DecompMIP.i: src/DecompMIP.cpp.i
 
-.PHONY : Hypergraph/Hypergraph_Fileparser.i
+.PHONY : src/DecompMIP.i
 
 # target to preprocess a source file
-Hypergraph/Hypergraph_Fileparser.cpp.i:
-	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/Hypergraph/Hypergraph_Fileparser.cpp.i
-.PHONY : Hypergraph/Hypergraph_Fileparser.cpp.i
+src/DecompMIP.cpp.i:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/DecompMIP.cpp.i
+.PHONY : src/DecompMIP.cpp.i
 
-Hypergraph/Hypergraph_Fileparser.s: Hypergraph/Hypergraph_Fileparser.cpp.s
+src/DecompMIP.s: src/DecompMIP.cpp.s
 
-.PHONY : Hypergraph/Hypergraph_Fileparser.s
+.PHONY : src/DecompMIP.s
 
 # target to generate assembly for a file
-Hypergraph/Hypergraph_Fileparser.cpp.s:
-	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/Hypergraph/Hypergraph_Fileparser.cpp.s
-.PHONY : Hypergraph/Hypergraph_Fileparser.cpp.s
+src/DecompMIP.cpp.s:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/DecompMIP.cpp.s
+.PHONY : src/DecompMIP.cpp.s
 
-main.o: main.cpp.o
+src/HG_Edge.o: src/HG_Edge.cpp.o
 
-.PHONY : main.o
+.PHONY : src/HG_Edge.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/main.cpp.o
-.PHONY : main.cpp.o
+src/HG_Edge.cpp.o:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/HG_Edge.cpp.o
+.PHONY : src/HG_Edge.cpp.o
 
-main.i: main.cpp.i
+src/HG_Edge.i: src/HG_Edge.cpp.i
 
-.PHONY : main.i
+.PHONY : src/HG_Edge.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/main.cpp.i
-.PHONY : main.cpp.i
+src/HG_Edge.cpp.i:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/HG_Edge.cpp.i
+.PHONY : src/HG_Edge.cpp.i
 
-main.s: main.cpp.s
+src/HG_Edge.s: src/HG_Edge.cpp.s
 
-.PHONY : main.s
+.PHONY : src/HG_Edge.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/main.cpp.s
-.PHONY : main.cpp.s
+src/HG_Edge.cpp.s:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/HG_Edge.cpp.s
+.PHONY : src/HG_Edge.cpp.s
 
-pagmo/Decomp.o: pagmo/Decomp.cpp.o
+src/HG_Node.o: src/HG_Node.cpp.o
 
-.PHONY : pagmo/Decomp.o
+.PHONY : src/HG_Node.o
 
 # target to build an object file
-pagmo/Decomp.cpp.o:
-	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/pagmo/Decomp.cpp.o
-.PHONY : pagmo/Decomp.cpp.o
+src/HG_Node.cpp.o:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/HG_Node.cpp.o
+.PHONY : src/HG_Node.cpp.o
 
-pagmo/Decomp.i: pagmo/Decomp.cpp.i
+src/HG_Node.i: src/HG_Node.cpp.i
 
-.PHONY : pagmo/Decomp.i
+.PHONY : src/HG_Node.i
 
 # target to preprocess a source file
-pagmo/Decomp.cpp.i:
-	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/pagmo/Decomp.cpp.i
-.PHONY : pagmo/Decomp.cpp.i
+src/HG_Node.cpp.i:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/HG_Node.cpp.i
+.PHONY : src/HG_Node.cpp.i
 
-pagmo/Decomp.s: pagmo/Decomp.cpp.s
+src/HG_Node.s: src/HG_Node.cpp.s
 
-.PHONY : pagmo/Decomp.s
+.PHONY : src/HG_Node.s
 
 # target to generate assembly for a file
-pagmo/Decomp.cpp.s:
-	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/pagmo/Decomp.cpp.s
-.PHONY : pagmo/Decomp.cpp.s
+src/HG_Node.cpp.s:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/HG_Node.cpp.s
+.PHONY : src/HG_Node.cpp.s
+
+src/Hypergraph.o: src/Hypergraph.cpp.o
+
+.PHONY : src/Hypergraph.o
+
+# target to build an object file
+src/Hypergraph.cpp.o:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/Hypergraph.cpp.o
+.PHONY : src/Hypergraph.cpp.o
+
+src/Hypergraph.i: src/Hypergraph.cpp.i
+
+.PHONY : src/Hypergraph.i
+
+# target to preprocess a source file
+src/Hypergraph.cpp.i:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/Hypergraph.cpp.i
+.PHONY : src/Hypergraph.cpp.i
+
+src/Hypergraph.s: src/Hypergraph.cpp.s
+
+.PHONY : src/Hypergraph.s
+
+# target to generate assembly for a file
+src/Hypergraph.cpp.s:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/Hypergraph.cpp.s
+.PHONY : src/Hypergraph.cpp.s
+
+src/LaPSO.o: src/LaPSO.cpp.o
+
+.PHONY : src/LaPSO.o
+
+# target to build an object file
+src/LaPSO.cpp.o:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/LaPSO.cpp.o
+.PHONY : src/LaPSO.cpp.o
+
+src/LaPSO.i: src/LaPSO.cpp.i
+
+.PHONY : src/LaPSO.i
+
+# target to preprocess a source file
+src/LaPSO.cpp.i:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/LaPSO.cpp.i
+.PHONY : src/LaPSO.cpp.i
+
+src/LaPSO.s: src/LaPSO.cpp.s
+
+.PHONY : src/LaPSO.s
+
+# target to generate assembly for a file
+src/LaPSO.cpp.s:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/LaPSO.cpp.s
+.PHONY : src/LaPSO.cpp.s
+
+src/MIP_Fileparser.o: src/MIP_Fileparser.cpp.o
+
+.PHONY : src/MIP_Fileparser.o
+
+# target to build an object file
+src/MIP_Fileparser.cpp.o:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/MIP_Fileparser.cpp.o
+.PHONY : src/MIP_Fileparser.cpp.o
+
+src/MIP_Fileparser.i: src/MIP_Fileparser.cpp.i
+
+.PHONY : src/MIP_Fileparser.i
+
+# target to preprocess a source file
+src/MIP_Fileparser.cpp.i:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/MIP_Fileparser.cpp.i
+.PHONY : src/MIP_Fileparser.cpp.i
+
+src/MIP_Fileparser.s: src/MIP_Fileparser.cpp.s
+
+.PHONY : src/MIP_Fileparser.s
+
+# target to generate assembly for a file
+src/MIP_Fileparser.cpp.s:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/MIP_Fileparser.cpp.s
+.PHONY : src/MIP_Fileparser.cpp.s
+
+src/MIP_to_Hypergraph.o: src/MIP_to_Hypergraph.cpp.o
+
+.PHONY : src/MIP_to_Hypergraph.o
+
+# target to build an object file
+src/MIP_to_Hypergraph.cpp.o:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/MIP_to_Hypergraph.cpp.o
+.PHONY : src/MIP_to_Hypergraph.cpp.o
+
+src/MIP_to_Hypergraph.i: src/MIP_to_Hypergraph.cpp.i
+
+.PHONY : src/MIP_to_Hypergraph.i
+
+# target to preprocess a source file
+src/MIP_to_Hypergraph.cpp.i:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/MIP_to_Hypergraph.cpp.i
+.PHONY : src/MIP_to_Hypergraph.cpp.i
+
+src/MIP_to_Hypergraph.s: src/MIP_to_Hypergraph.cpp.s
+
+.PHONY : src/MIP_to_Hypergraph.s
+
+# target to generate assembly for a file
+src/MIP_to_Hypergraph.cpp.s:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/MIP_to_Hypergraph.cpp.s
+.PHONY : src/MIP_to_Hypergraph.cpp.s
+
+src/anyoption.o: src/anyoption.cpp.o
+
+.PHONY : src/anyoption.o
+
+# target to build an object file
+src/anyoption.cpp.o:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/anyoption.cpp.o
+.PHONY : src/anyoption.cpp.o
+
+src/anyoption.i: src/anyoption.cpp.i
+
+.PHONY : src/anyoption.i
+
+# target to preprocess a source file
+src/anyoption.cpp.i:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/anyoption.cpp.i
+.PHONY : src/anyoption.cpp.i
+
+src/anyoption.s: src/anyoption.cpp.s
+
+.PHONY : src/anyoption.s
+
+# target to generate assembly for a file
+src/anyoption.cpp.s:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/anyoption.cpp.s
+.PHONY : src/anyoption.cpp.s
+
+src/main.o: src/main.cpp.o
+
+.PHONY : src/main.o
+
+# target to build an object file
+src/main.cpp.o:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
+
+src/main.i: src/main.cpp.i
+
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cpp.i:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cpp.s:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
 
 # Help Target
 help:
@@ -321,27 +456,42 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... main_test"
-	@echo "... DecompMIP/DecompMIP.o"
-	@echo "... DecompMIP/DecompMIP.i"
-	@echo "... DecompMIP/DecompMIP.s"
-	@echo "... Hypergraph/HG_Edge.o"
-	@echo "... Hypergraph/HG_Edge.i"
-	@echo "... Hypergraph/HG_Edge.s"
-	@echo "... Hypergraph/HG_Node.o"
-	@echo "... Hypergraph/HG_Node.i"
-	@echo "... Hypergraph/HG_Node.s"
-	@echo "... Hypergraph/Hypergraph.o"
-	@echo "... Hypergraph/Hypergraph.i"
-	@echo "... Hypergraph/Hypergraph.s"
-	@echo "... Hypergraph/Hypergraph_Fileparser.o"
-	@echo "... Hypergraph/Hypergraph_Fileparser.i"
-	@echo "... Hypergraph/Hypergraph_Fileparser.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
-	@echo "... pagmo/Decomp.o"
-	@echo "... pagmo/Decomp.i"
-	@echo "... pagmo/Decomp.s"
+	@echo "... src/ConDecomp_LaPSO_Connector.o"
+	@echo "... src/ConDecomp_LaPSO_Connector.i"
+	@echo "... src/ConDecomp_LaPSO_Connector.s"
+	@echo "... src/CpuTimer.o"
+	@echo "... src/CpuTimer.i"
+	@echo "... src/CpuTimer.s"
+	@echo "... src/Decomp.o"
+	@echo "... src/Decomp.i"
+	@echo "... src/Decomp.s"
+	@echo "... src/DecompMIP.o"
+	@echo "... src/DecompMIP.i"
+	@echo "... src/DecompMIP.s"
+	@echo "... src/HG_Edge.o"
+	@echo "... src/HG_Edge.i"
+	@echo "... src/HG_Edge.s"
+	@echo "... src/HG_Node.o"
+	@echo "... src/HG_Node.i"
+	@echo "... src/HG_Node.s"
+	@echo "... src/Hypergraph.o"
+	@echo "... src/Hypergraph.i"
+	@echo "... src/Hypergraph.s"
+	@echo "... src/LaPSO.o"
+	@echo "... src/LaPSO.i"
+	@echo "... src/LaPSO.s"
+	@echo "... src/MIP_Fileparser.o"
+	@echo "... src/MIP_Fileparser.i"
+	@echo "... src/MIP_Fileparser.s"
+	@echo "... src/MIP_to_Hypergraph.o"
+	@echo "... src/MIP_to_Hypergraph.i"
+	@echo "... src/MIP_to_Hypergraph.s"
+	@echo "... src/anyoption.o"
+	@echo "... src/anyoption.i"
+	@echo "... src/anyoption.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
 .PHONY : help
 
 
