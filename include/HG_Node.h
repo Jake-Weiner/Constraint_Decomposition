@@ -22,6 +22,11 @@ public:
     };
 
     void addEdgeIdx(int edge_idx);
+
+    int getEdgeIdxsSize() const{
+        return edge_idxs.size();
+    }
+
     int getNodeIdx();
     vector<int> getEdgeIdxs();
     void removeEdgeIdx(int edge_idx);

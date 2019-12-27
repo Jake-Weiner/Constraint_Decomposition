@@ -105,6 +105,7 @@ void Particle::resize(size_t numVar, size_t numConstr)
     lb = -INF;
     pVel.resize(numVar, 0.0);
 }
+
 Problem::Problem(int nVar, int nConstr)
     : psize(nVar)
     , dsize(nConstr)
@@ -121,18 +122,32 @@ Problem::Problem(int nVar, int nConstr)
 
 }
 
+void Problem::setDualBoundsEqual(const std::vector<int>& idxs){
+    for (auto& idx : idxs){
+        dualLB[idx] = -INF;
+        dualUB[idx] = INF;
+    }
+}
+void Problem::setDualBoundsLesser(const std::vector<int>& idxs){
+
+    for (auto& idx : idxs){
+        dualLB[idx] = -INF;
+        dualUB[idx] = 0;
+    }
+
+}
+void Problem::setDualBoundsGreater(const std::vector<int>& idxs){
+    for (auto& idx : idxs){
+        dualLB[idx] = 0;
+        dualUB[idx] = INF;
+    }
+}
+
 // Main method
 void Problem::solve(UserHooks& hooks)
 {
 
-    // commodities size
-    double commodities = best.perturb.size() / best.dual.size();
-    vector<double> best_lb;
-    best_lb.push_back(0.0);
-    vector<double> best_ub;
-    best_ub.push_back(INF);
-    int non_improv = 0;
-    int ub_non_improv = 0;
+    
     double improv_thresh = 1.01;
     const int lbCheckFreq = 10;
     initialise(hooks); // set up the swarm
@@ -152,11 +167,12 @@ void Problem::solve(UserHooks& hooks)
 #pragma omp parallel for schedule(static, std::max(1, param.nParticles / param.nCPU))
     for (int idx = 0; idx < param.nParticles; ++idx) {
         ParticleIter p(swarm, idx);
-        if (p.idx > 0) { // create random see from previous generator
+        if (p.idx > 0) { // create random seed from previous generator
             rand[p.idx].seed((uint32_t)rand[p.idx - 1](
                 0, std::numeric_limits<uint32_t>::max()));
         }
         for (int i = 0; i < dsize; ++i) { // check initial point is valid
+        //check the dual values... 
             if (p->dual[i] < dualLB[i]) {
                 if (param.printLevel)
                     printf("ERROR: initial dual[%d] %.2f below LB %.2f\n",
@@ -190,6 +206,8 @@ void Problem::solve(UserHooks& hooks)
             printf("dual value is %f\n",p->dual[i]);
         }
         */
+
+        printf("Status is %d", status);
         bestLB[p.idx] = p->lb;
         if (param.printLevel > 1) {
             printf("\tp%02d: LB=%g UB=%g feas=%d viol=%g -- %g\n",
@@ -219,8 +237,6 @@ void Problem::solve(UserHooks& hooks)
         printf("Initial LB=%g UB=%g\n", best.lb, best.ub);
     int noImproveIter = 0, nReset = 0, maxNoImprove = 1000;
 
-    vector<double> lb_time_limits = {90.0, 180.0,  270.0, 360.0, 450.0,  540.0,  630.0,  720.0,  810.0,  900.0};
-
 
     int current_lb_time_limits_idx = 0;
     double last_lb_comparison;
@@ -229,41 +245,9 @@ void Problem::solve(UserHooks& hooks)
 
 
         printf("iter num = %d\n", nIter);
-        printf("best upper bound so far is %f \n" , commodities - best.lb);
+        printf("best lower bound so far is %f \n" ,  best.lb);
         // cpu time is within the limit
-        if (cpuTime() < lb_time_limits[current_lb_time_limits_idx]){
-               last_lb_comparison = commodities - best.lb;
-        }
-        else{ // update next limit, use the last found best solution that was within the limit
-            printf("Current Limit is %f with bound of %f \n",lb_time_limits[current_lb_time_limits_idx],last_lb_comparison);
-
-            current_lb_time_limits_idx++;
-            lb_comparisons.push_back(last_lb_comparison);
-            if (current_lb_time_limits_idx > lb_time_limits.size() -1){
-                break;
-            }
-        }
-        if (param.convergence_test == true) {
-            double sum_lb = 0;
-            int sum_ub = 0;
-            int sum_viol = 0;
-            int path_saved = 0;
-            for (int idx = 0; idx < param.nParticles; ++idx) {
-                ParticleIter p(swarm, idx);
-                sum_lb += p->lb;
-                sum_ub += p->ub;
-                sum_viol += p->viol_sum;
-                path_saved += p->path_saved;
-            }
-            average_lb_tracking.push_back(commodities-(sum_lb / param.nParticles));
-            average_viol_tracking.push_back(sum_viol / param.nParticles);
-            average_path_saved_tracking.push_back(path_saved / param.nParticles);
-            average_ub_tracking.push_back(commodities - (sum_ub / param.nParticles));
-            dual_euclid.push_back(euclideanDistance(swarm, "dual"));
-            perturb_euclid.push_back(euclideanDistance(swarm, "perturb"));
-            best_lb_tracking.push_back(commodities - best.lb);
-            best_ub_tracking.push_back(commodities - best.ub);
-        }
+    
 
         if (param.printLevel > 1 && nIter % param.printFreq == 0)
             printf("Iteration %d --------------------\n", nIter);
@@ -351,12 +335,7 @@ void Problem::solve(UserHooks& hooks)
                 if (hooks.heuristics(*p) == ABORT) {
                     status = ABORT;
                     continue;
-                } else {
-                    if (((p->ub <= p->localSearch_thresh) || nIter % param.localSearchFreq == 0) && param.localSearch) {
-                        p->localSearch_thresh = p->ub;
-                        hooks.localSearch(*p);
-                    }
-                }
+                } 
             }
             if (param.printLevel > 1 && nIter % param.printFreq == 0) {
                 printf("\tp%02d: LB=%g UB=%g feas=%d minViol=%g\n",
@@ -374,19 +353,10 @@ void Problem::solve(UserHooks& hooks)
                         p->perturb.min(), p->perturb.max());
                 }
             }
-            if (nIter == 1 && param.nParticles == 1) {
-                best_particles.push_back(&(*p)); //initialise best_particles_sols if only 1 particle is used
-            }
+            
 
-            // write out particle info to see how it behaves after each iteration
         }
-        for (int idx = 0; idx < param.nParticles; ++idx) {
-            ParticleIter p(swarm, idx);
-            for (int x_idx = 0; x_idx < p->x.size(); ++x_idx){
-                x_total[x_idx] += p->x[x_idx];
-            }
-        }
-
+       
         if (updateBest(hooks, nIter)) {
             noImproveIter = 0;
         } else {
@@ -458,46 +428,6 @@ void Problem::solve(UserHooks& hooks)
         if (param.printLevel && nIter % param.printFreq == 0)
             printf("%2d: LB=%.2f UB=%.2f\n", nIter, best.lb, best.ub);
     }
-    if (param.convergence_test == true) {
-        double sum_lb = 0;
-        int sum_ub = 0;
-        int sum_viol = 0;
-        int path_saved = 0;
-        for (int idx = 0; idx < param.nParticles; ++idx) {
-            ParticleIter p(swarm, idx);
-            sum_lb += p->lb;
-            sum_ub += p->ub;
-            sum_viol += p->viol_sum;
-            path_saved += p->path_saved;
-        }
-        average_lb_tracking.push_back(commodities - (sum_lb / param.nParticles));
-        average_viol_tracking.push_back(sum_viol / param.nParticles);
-        average_path_saved_tracking.push_back(path_saved / param.nParticles);
-        average_ub_tracking.push_back(commodities -( sum_ub / param.nParticles));
-        dual_euclid.push_back(euclideanDistance(swarm, "dual"));
-        perturb_euclid.push_back(euclideanDistance(swarm, "perturb"));
-        best_lb_tracking.push_back(commodities - best.lb);
-        best_ub_tracking.push_back(commodities - best.ub);
-
-        //set duals to 0
-        for (int idx = 0; idx < param.nParticles; ++idx) {
-            ParticleIter p(swarm, idx);
-            p->dual = 0;
-            p->rc = 0;
-            p->perturb = 0;
-            hooks.solveSubproblem(*p);
-        }
-
-        sum_lb = 0;
-        for (int idx = 0; idx < param.nParticles; ++idx) {
-            ParticleIter p(swarm, idx);
-            sum_lb += p->lb;
-            
-        }
-        dual_0_tracking.push_back(commodities -  (sum_lb / param.nParticles));
-    }
-
-    
 }
 
 double Problem::swarmRadius() const

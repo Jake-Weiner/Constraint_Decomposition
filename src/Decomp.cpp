@@ -62,7 +62,7 @@ vector<vector<double>> Decomp::greedy_seeding(){
     
     int total_num_nodes = HG.getHGNodes().size();
     int total_num_edges = HG.getHGEdges().size();
-    vector<double> percentages = {0.05, 0.1, 0.2, 0.3, 0.4, 0.5}; //0.6, 0.7, 0.8, 0.9};
+    vector<double> percentages = {0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95,0.96,0.97,0.98};
     vector<vector<double>> initial_population;
     for (int i =0; i<percentages.size(); i++){
         vector<double> individual;
@@ -91,12 +91,12 @@ vector<vector<double>> Decomp::greedy_seeding(){
                 }
                 int edge_idx = edge.getEdgeIdx();
                 int num_nodes_in_edge = edges_copy[edge_idx].getNodeIdxs().size();
-                cout << "total number of nodes =  " << total_num_nodes << endl;
-                cout << "total number of nodes in edge " << edge_idx << " = " << num_nodes_in_edge << endl;
-                cout << "percentage * total_num_edges = " << percentage * total_num_edges << endl;
+                // cout << "total number of nodes =  " << total_num_nodes << endl;
+                // cout << "total number of nodes in edge " << edge_idx << " = " << num_nodes_in_edge << endl;
+                // cout << "percentage * total_num_edges = " << percentage * total_num_edges << endl;
                 double probability = (num_nodes_in_edge/ double(total_num_nodes)) * (percentage * total_num_edges);
                 double random_num = dis(gen);
-                cout << "probability = " << probability << " random number = " << random_num << endl;
+                // cout << "probability = " << probability << " random number = " << random_num << endl;
                 if (random_num < probability){
                     initial_population[individual_idx][edge_idx] = 1;
                     count++;

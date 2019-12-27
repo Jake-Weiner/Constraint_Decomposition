@@ -31,6 +31,7 @@ struct CPLEX_MIP_Subproblem{
 class ConDecomp_LaPSO_ConnectorParticle : public LaPSO::Particle {
 public:
     ConDecomp_LaPSO_ConnectorParticle(int num_var, int num_con) : LaPSO::Particle(num_var,num_con){}
+    // set bounds for different dual variables based on indexes given
 };
 
 class ConDecomp_LaPSO_Connector : public LaPSO::UserHooks {
@@ -55,10 +56,11 @@ public:
     void setPrinting(bool p) {printing=p;}
 
 private:
-   
+    void updateParticleLB(ConDecomp_LaPSO_ConnectorParticle& p);
+    void updateParticleViol(ConDecomp_LaPSO_ConnectorParticle& p);
     vector<CPLEX_MIP_Subproblem> MS;
-    void initSubproblems(MIP_Problem& original_problem,const vector<Partition_Struct>&);
-    void initOriginalCosts(MIP_Problem& original_problem);
+    void initSubproblems(const vector<Partition_Struct>&);
+    void initOriginalCosts();
     bool printing;
     MIP_Problem OP;
     DblVec original_costs;

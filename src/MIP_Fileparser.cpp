@@ -165,6 +165,16 @@ bool RHSSectionCheck(vector<string>& line_split)
     return false;
 }
 
+bool BoundsSectionCheck(vector<string>& line_split)
+{
+    for (auto& word : line_split) {
+        if (word.compare("BOUNDS") == 0) {
+            return true;
+        }
+    }
+    return false;
+}
+
 bool ObjFnSymbolCheck(vector<string>& line_split)
 {
     if (line_split[0].compare("N") == 0){
@@ -205,15 +215,31 @@ void MIP_Fileparser::extractVariableInfo(const vector<string>& line_split, const
         if (MII.constraintNameExists(line_split[i])) {
             string constraint_name = line_split[i];
             int edge_constraint_idx = MII.getConstraintIdx(constraint_name);
-            double var_coeff = double(stoi(line_split[i + 1]));
-            MP.constraints[edge_constraint_idx].addVarIdx(MII.getVariableIdx(variable_name));
-            MP.constraints[edge_constraint_idx].addVarCoeff(var_coeff);
+            double var_coeff;
+            try{
+                var_coeff = double(stol(line_split[i + 1]));
+            }
+            catch(...){
+                cout << "error with var coeff parsing " << endl;
+                cout << "line_split[i+1] = " << line_split[i+1] << endl;
+            }
+
+            int var_idx = MII.getVariableIdx(variable_name);
+            pair<int,double> con_term = {var_idx, var_coeff};
+            MP.constraints[edge_constraint_idx].addConTerm(con_term);
+            MP.constraints[edge_constraint_idx].addVarIdx(var_idx);
+            // MP.constraints[edge_constraint_idx].addVarCoeff(var_coeff);
         }
 
         if (objFnCheck(line_split[i],obj_function_symbol)) {
-            MP.addObjVarIdx(MII.getVariableIdx(variable_name));
-            double var_coeff = double(stoi(line_split[i + 1]));
-            MP.addObjVarCoeff(var_coeff);
+            
+            int obj_var_idx = MII.getVariableIdx(variable_name);
+            double obj_var_coeff =  double(stoi(line_split[i + 1]));
+            pair<int,double> objective_term = {obj_var_idx, obj_var_coeff};
+            MP.addObjTerm(objective_term);
+            // MP.addObjVarIdx(MII.getVariableIdx(variable_name));
+            // double var_coeff = double(stoi(line_split[i + 1]));
+            // MP.addObjVarCoeff(var_coeff);
         }
     }
 }
@@ -234,24 +260,32 @@ void MIP_Fileparser::extractRHSInfo(const vector<string>& line_split)
 void MIP_Fileparser::extractBoundsInfo(const vector<string>& line_split)
 {   
     Bounds_type bt;
-    if(line_split[0].find("UP") != std::string::npos){
+    if(line_split[0].find("UP") != std::string::npos || line_split[0].find("UI") != std::string::npos){
         bt = Upper;
     }
-    else if (line_split[0].find("LO") != std::string::npos){
+    else if (line_split[0].find("LO") != std::string::npos ||  line_split[0].find("LI") != std::string::npos){
         bt = Lower;
-    }
-    
+    }    
     for (int i = 1; i < line_split.size(); i++) {
         // does line contain constraint information
         if (MII.varNameExists(line_split[i])) {
             string var_name = line_split[i];
             int var_idx = MII.getVariableIdx(var_name);
-            double bound = double(stoi(line_split[i+1]));
+            double bound;
+            try{
+                bound = double(stoi(line_split[i+1]));
+            }
+            catch(...){
+                cout << "line_split[i+1] = " << line_split[i+1] << endl;
+            }
+            
             if (bt == Upper){
                 MP.variables[var_idx].setUB(bound);
+                // cout << "Upper Bound Set" << endl;
             }
             else if (bt == Lower){
                 MP.variables[var_idx].setLB(bound);
+                // cout << "Lower Bound Set" << endl;
             }
         }
     }
@@ -279,6 +313,10 @@ void MIP_Fileparser::parserMps(string filename)
             vector<string> line_split;
 
             boost::split(line_split, line, boost::is_any_of(" \t"), boost::token_compress_on);
+
+            if (line_split[0].find("ENDATA") != std::string::npos){
+                break;
+            }
             // COLUMNS 
             //check for objective function column
             if (ObjFnSymbolCheck(line_split) == true){
@@ -326,7 +364,7 @@ void MIP_Fileparser::parserMps(string filename)
                 continue;
             }
             // BOUNDS Section Check
-            if (RHSSectionCheck(line_split) == true) {
+            if (BoundsSectionCheck(line_split) == true) {
                 RHSLines = false;
                 Bounds = true;
                 continue;
@@ -340,6 +378,8 @@ void MIP_Fileparser::parserMps(string filename)
                 extractBoundsInfo(line_split);
             }
 
+            
+
         }
     }
     MP.number_variables = current_var_number;
@@ -349,7 +389,7 @@ void MIP_Fileparser::parserMps(string filename)
 void MIP_Fileparser::printConstraints(){
     
     for (auto& it: MII.constraint_to_idx) {
-    // Do stuff
+
     cout << "Constraint Name - " << it.first << " Constraint IDX - " << it.second << endl;
     }
 
@@ -358,42 +398,6 @@ void MIP_Fileparser::printConstraints(){
 void MIP_Fileparser::printVariables(){
     
     for (auto& it: MII.var_to_idx) {
-    // Do stuff
     cout << "Variable Name - " << it.first << " Variable IDX - " << it.second << endl;
     }
-
 }
-//
-//         }
-//
-//         vector<int> nodes_idxs_in_constraint;
-//         for (int node_idx = 0; node_idx < line_split.size(); node_idx++) {
-//             int node_value;
-//             try {
-//                 node_value = stoi(line_split[node_idx]);
-//                 if (node_value == 1) {
-//                     nodes_idxs_in_constraint.push_back(node_idx);
-//                     HG_nodes[node_idx].addEdgeIdx(current_constraint_number);
-//                 }
-//             } catch (exception invalid_argument) {
-//                 cout << "invalid stoi = " << line_split[node_idx] << endl;
-//                 cout << "line split = ";
-//                 for (auto& field : line_split) {
-//                     cout << field;
-//                 }
-//                 cout << endl;
-//                 cout << "node idx = " << node_idx << endl;
-//                 cout << "line number = " << line_count << endl;
-//                 cout << "line is " << line << endl;
-//             }
-//         }
-//         HG_Edge current_constraint = HG_Edge(current_constraint_number, nodes_idxs_in_constraint);
-//         HG_edges[current_constraint_number] = current_constraint;
-//         current_constraint_number += 1;
-//         line_count++;
-//     }
-// }
-
-// if (current_constraint_number != num_edges) {
-//     cout << "error - number of constraints read does not match constraint number in input file" << endl;
-// }

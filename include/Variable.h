@@ -2,6 +2,7 @@
 #define __VARIABLE__
 
 #include <vector>
+#include <iostream>
 
 using namespace std;
 
@@ -38,6 +39,9 @@ class Variable{
             return lower_bound;
         }
 
+        void printInfo(){
+            cout << "index = " << variable_idx << " : upper bound = " << upper_bound << " : lower bound = " << lower_bound << endl; 
+        }
         
     private:
         double upper_bound = 999999999999;

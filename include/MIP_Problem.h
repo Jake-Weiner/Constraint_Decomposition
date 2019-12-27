@@ -42,10 +42,62 @@ struct MIP_Problem{
         return variables.size();
     }
     
+    void printVariables(){
+        for (auto& variable : variables){
+            variable.printInfo();
+        }
+    }
+
+    void printConstraints(){
+        for (auto& constraint : constraints){
+            constraint.printInfo();
+        }
+    }
+
+    void printObjectiveFn(){
+        cout << "Objective function : ";
+        for (auto& obj_term : objective_fn){
+            cout << obj_term.second  << "*" << obj_term.first  << " ";
+        }
+        cout <<endl;
+    }
+
+    vector<int> getConGreaterBounds(){
+        vector<int> idxs;
+        for (auto& constraint: constraints){
+            if (constraint.getBoundType() == Greater){
+                idxs.push_back(constraint.getConIdx());
+            }
+        }
+        return idxs;
+    }
+    vector<int> getConLesserBounds(){
+        vector<int> idxs;
+        for (auto& constraint: constraints){
+            if (constraint.getBoundType() == Less){
+                idxs.push_back(constraint.getConIdx());
+            }
+        }
+        return idxs;
+    }
+    vector<int> getConEqualBounds(){
+        vector<int> idxs;
+         for (auto& constraint: constraints){
+            if (constraint.getBoundType() == Equal){
+                idxs.push_back(constraint.getConIdx());
+            }
+        }
+        return idxs;
+    }
+
+    void addObjTerm(pair<int,double> term){
+        objective_fn.push_back(term);
+    }
 
     int number_variables;
     vector<Constraint> constraints;
     vector<Variable> variables;
+    vector<pair<int,double>> objective_fn; 
     vector<int> variables_obj_fn;
     vector<double> coeff_obj_fn;
     Optimisation_Type OT;

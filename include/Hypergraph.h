@@ -35,13 +35,9 @@ public:
     void printEdges();
     void printNodes();
     void printPartitions();
-
+    void partitionValidity();
     int getLargestPartition();
     void partition(const vector<double>& constraints_selected);
-    
-    vector<vector<int>> getPartitions(){
-        return partitions;
-    }
 
     vector<Partition_Struct> getPartitionStruct(){
         return PS;
@@ -61,15 +57,15 @@ public:
     };
     
 private:
-    vector<int> findPartition(const vector<HG_Edge>& edges_considered, const vector<HG_Node>& nodes_considered, 
+    void findPartition(const vector<HG_Edge>& edges_considered, const vector<HG_Node>& nodes_considered, 
     HG_Node starting_node, vector<bool>& node_idx_seen);
     int num_nodes;
     int num_edges;
     vector<HG_Edge> HG_edges;
     vector<HG_Node> HG_nodes;
     void printPartitions(vector<vector<int>> partitions);
-    vector<vector<int>> identifyPartitions(const vector<HG_Edge>& edges, const vector<HG_Node>& nodes);
-    vector<vector<int>> partitions;
+    void identifyPartitions(const vector<HG_Edge>& edges, const vector<HG_Node>& nodes);
+    void reduceGraph(const vector<double>& constraints_selected,  vector<HG_Edge>& updated_edges, vector<HG_Node>& updated_nodes);
     int largest_partition;
     vector<Partition_Struct> PS;
 };

@@ -57,19 +57,21 @@ int main(int argc, const char** argv)
 {
     MIP_Fileparser MIP_FP;
     MIP_FP.parse(file_type::MPS, "/home/jake/PhD/Decomposition/Constraint_Decomposition/test_input/neos-2657525-crna (1).mps");
-    MIP_FP.printConstraints();
-    MIP_FP.printVariables();
+    // MIP_FP.printConstraints();
+    // MIP_FP.printVariables();
     MIP_Problem MP = MIP_FP.getMIPProblem();
     cout << "Number of constraints is " << MP.getNumConstraints() << endl;
     cout << "Number of variables is " << MP.getNumVariables() << endl;
+    MP.printVariables();
+    MP.printConstraints();
+    MP.printObjectiveFn();
     MIP_to_Hypergraph MTH;
     MTH.convertToHypergraph(MP);
 
-    //HGFP.parse(file_type::USER, "/home/jake/PhD/Decomposition/Constraint_Decomposition/Hypergraph/test_input/test_input");
 
     Hypergraph HG(MTH.getHGEdges(), MTH.getHGNodes());
 
-    // // solve decomposition using MIP
+    // solve decomposition using MIP
     // DecompMIP DM;
     // DecompInfo DI;
 
@@ -100,11 +102,12 @@ int main(int argc, const char** argv)
     Decomp udp = Decomp(HG.getNumEdges(), HG);
     problem prob{ udp };
 
+    //multiple instances
     // sort edges based on number of nodes contained
 
     // NSGA_ii_characteristics test = {100,100, true};
 
-    // for multiple instances
+    // for multiple instances with different parameters
     // vector<NSGA_ii_characteristics> nsga_instances;
     // for (auto& instance : nsga_instances){
 
@@ -114,20 +117,21 @@ int main(int argc, const char** argv)
 
     //     population pop;
 
-    //     if (instance.greedy == true){
-    //         vector<vector<double>> greedy_population = udp.greedy_seeding();
-    //         int pop_size_wo_greedy = instance.population_size - greedy_population.size();
-    //         population pop_greedy{prob, pop_size_wo_greedy};
-    //         for (auto& individual : greedy_population){
-    //             pop_greedy.push_back(individual);
+  
+    // if (instance.greedy == true){
+    //     vector<vector<double>> greedy_population = udp.greedy_seeding();
+    //     int pop_size_wo_greedy = instance.population_size - greedy_population.size();
+    //     population pop_greedy{prob, pop_size_wo_greedy};
+    //     for (auto& individual : greedy_population){
+    //         pop_greedy.push_back(individual);
 
-    //         }
-    //         pop = pop_greedy;
     //     }
-    //     else{
-    //         population non_greedy{prob, instance.population_size};
-    //         pop = non_greedy;
-    //     }
+    //     pop = pop_greedy;
+    // }
+    // else{
+    //     population non_greedy{prob, instance.population_size};
+    //     pop = non_greedy;
+    // }
 
     //     string output_filename_root = "/home/jake/PhD/Decomposition/Constraint_Decomposition/output/nsgaii_";
     //     string gen_num = to_string(instance.number_generations);
@@ -154,22 +158,58 @@ int main(int argc, const char** argv)
     //     std::cout << "The population: \n" << pop;
     // }
 
+    //single instance
     algorithm algo{nsga2(50)};
-
     algo.set_verbosity(1);
+    population pop;
+    int pop_size = 20;
+    bool greedy = true;
+    if (greedy == true){
+        vector<vector<double>> greedy_population = udp.greedy_seeding();
+        int pop_size_wo_greedy = pop_size - greedy_population.size();
+        population pop_greedy{prob, pop_size_wo_greedy};
+        for (auto& individual : greedy_population){
+            pop_greedy.push_back(individual);
 
-    population pop{prob, 8};
+        }
+        pop = pop_greedy;
+    }
+    else{
+        population non_greedy{prob, pop_size};
+        pop = non_greedy;
+    }
+
     pop = algo.evolve(pop);
     std::vector<vector<double>> x_vals = pop.get_x();
-    vector<double> x1 = x_vals[0];
 
-    HG.partition(x1);
+    int largest_sub = (HG.getNumNodes()/2);
+    int best_index = 0;
+    int smallest_num_con_relaxed = HG.getNumEdges();
+    // take the best partition that is 50% of the largest subprolem with the smallest number of constraints
+    int idx = 0;
+    for (auto& obj_val : pop.get_f()){
+        if(obj_val[0] <= largest_sub){
+            if (obj_val[1] < smallest_num_con_relaxed){
+                best_index = idx;
+                smallest_num_con_relaxed = obj_val[1];
+            }
+        }
+        idx++;
+    }
+    vector<double> test_partition = x_vals[best_index];
+    // vector<double> no_partition;
+    // no_partition.resize( HG.getNumEdges(),0);
+   
+    HG.partition(test_partition);
     HG.printPartitions();
-    
+    // ensure that each node is only within one 
+    HG.partitionValidity();
 
     // print partitions to see what they look like...
 
     ConDecomp_LaPSO_Connector CLC(MP, HG.getPartitionStruct(), false);
+    CLC.maxsolves = 100;
+    CLC.nsolves = 0;
     LaPSO::Problem solver(HG.getNumNodes(), HG.getNumEdges()); // number of variables & (relaxed) constraints
     //-------- set default parameter values
     solver.param.absGap = 0.999; // any two solutions must differ by at least 1
@@ -177,18 +217,25 @@ int main(int argc, const char** argv)
     solver.param.printLevel = 1;
     solver.param.heurFreq = 1;
     solver.param.localSearchFreq = 3;
-    solver.param.maxIter = 200;
-    solver.param.subgradFactor = 0.01; // start with a small step size
+    solver.param.maxIter = 10000;
+    solver.param.maxCPU = 3600;
+    solver.param.maxWallTime = 1000;
+    solver.param.subgradFactor = 2; // start with a small step size
+    solver.param.subgradFmult = 0.6;
+    solver.param.velocityFactor = 0.1;
+    solver.param.globalFactor = 0.05;
     solver.param.subgradFmin = 0.0001; // allow very small steps
+    solver.param.nParticles = 1;
     // override defaults with command line arguments
     // solver.param.parse(argc, argv);
-
+    solver.param.perturbFactor = 0;
     bool printing = solver.param.printLevel > 0;
     CLC.setPrinting(printing);
     CLC.maxsolves = solver.param.maxIter;
-
-    solver.best.lb = 0; // no path left out
-    solver.dualUB = 0; // all constraints are <= so lagrange multipliers are <= 0
+    
+    solver.best.lb = -INF; // no path left out
+    solver.best.ub = 5;
+    // solver.best. = -INF; // all constraints are <= so lagrange multipliers are <= 0
 
     Uniform rand;
     if (solver.param.randomSeed == 0)
@@ -197,16 +244,52 @@ int main(int argc, const char** argv)
         rand.seed(solver.param.randomSeed);
     double max_initial_dual = 1.0;
     double initial_dual = 0.0;
+    
+    // initialise bounds for dual variables based on constraints <= , >=, ==
+    vector<int> greater_bounds_idxs = MP.getConGreaterBounds();
+    vector<int> lesser_bounds_idxs = MP.getConLesserBounds();
+    vector<int> equal_bounds_idxs = MP.getConEqualBounds();
+
+    cout << "greater_bounds idxs are " << endl;
+    for (auto& idx : greater_bounds_idxs){
+        cout << idx << " ";
+    }
+    cout << endl;
+
+     cout << "lesser_bounds idxs are " << endl;
+    for (auto& idx : lesser_bounds_idxs){
+        cout << idx << " ";
+    }
+    cout << endl;
+
+     cout << "equal_bounds idxs are " << endl;
+    for (auto& idx : equal_bounds_idxs){
+        cout << idx << " ";
+    }
+    cout << endl;
+
+    solver.setDualBoundsGreater(greater_bounds_idxs);
+    solver.setDualBoundsLesser(lesser_bounds_idxs);
+    solver.setDualBoundsEqual(equal_bounds_idxs);
+
     for (int i = 0; i < solver.param.nParticles; ++i) {
         ConDecomp_LaPSO_ConnectorParticle* p = new ConDecomp_LaPSO_ConnectorParticle(HG.getNumNodes(), HG.getNumEdges());
-        for (int j = 0; j < solver.dsize; ++j) {
-            initial_dual = -rand(0, 1);
-
-            p->dual[j] = initial_dual; // random initial point
-            // if (initial_dual < max_initial_dual) {
-            //     max_initial_dual = initial_dual;
-            // }
+        for (auto& idx : lesser_bounds_idxs){
+            double rand_val = rand(-0.0000001,0);
+            p->dual[idx] = rand_val;
+            // cout << "for greater bound, rand_val = " << rand_val << endl;
         }
+        for (auto& idx : greater_bounds_idxs){
+             double rand_val = rand(0,0.0000001);
+            p->dual[idx] = rand_val;
+            //  cout << "for lesser bound, rand_val = " << rand_val << endl;
+        }
+        for (auto& idx : equal_bounds_idxs){
+             double rand_val = rand(-0.0000001,0.0000001);
+            p->dual[idx] = rand_val;
+            // cout << "for equal bound, rand_val = " << rand_val << endl;
+        }
+        p->ub = 5;
         solver.swarm.push_back(p);
     }
     std::cout << "set up solver with " << solver.param.nParticles
@@ -216,8 +299,8 @@ int main(int argc, const char** argv)
     solver.solve(CLC);
 
     //if (printing == true) { // always show the final result
-    std::cout << "Best solution missing " << solver.best.ub
-              << " paths, lower bound " << solver.best.lb
+    std::cout << "Best Upper Bound solution  " << solver.best.ub
+              << " , Best lower bound  solution" << solver.best.lb
               << std::endl
               << "CPU time = " << solver.cpuTime()
               << " elapsed = " << solver.wallTime() << " sec"

@@ -9,16 +9,13 @@
 
 using namespace std;
 
-vector<vector<int>> Hypergraph::identifyPartitions(const vector<HG_Edge>& edges, const vector<HG_Node>& nodes)
+void Hypergraph::identifyPartitions(const vector<HG_Edge>& edges, const vector<HG_Node>& nodes)
 {
-
-    vector<vector<int>> current_partitions;
-   
 
     // test for empty edges
     if (edges.empty()) {
-        // cout << "no edges selected to identify partitions" << endl;
-        return current_partitions;
+        cout << "no edges selected to identify partitions" << endl;
+        return;
     }
 
     // List keeping track of seen edges
@@ -27,16 +24,17 @@ vector<vector<int>> Hypergraph::identifyPartitions(const vector<HG_Edge>& edges,
     // List keeping track of nodes seen
     vector<bool> node_idx_seen;
     node_idx_seen.resize(nodes.size(), false);
-    int BFS_counter = 0;
-    //perform BFS on Hypergraph - stop when all edges have been considered or all nodes have been considered
+    //perform BFS on Hypergraph - stop when all nodes have been considered
     while (count(node_idx_seen.begin(), node_idx_seen.end(), true) != node_idx_seen.size()){
-    // && count(edge_idx_seen.begin(), edge_idx_seen.end(), true) != edge_idx_seen.size() 
-    // && BFS_counter < 100) {
 
-        // pick first unseen node if it has an edge attached
+        // pick first unseen node iff it has an edge attached
         int node_idx_selected;
         for (int i = 0; i < node_idx_seen.size(); i++) {
             if (node_idx_seen[i] == false) {
+                // if (nodes[i].getEdgeIdxsSize() == 0){
+                //     node_idx_seen[i] = true;
+                //     continue;
+                // }
                 node_idx_selected = i;
                 break;
             }
@@ -44,18 +42,16 @@ vector<vector<int>> Hypergraph::identifyPartitions(const vector<HG_Edge>& edges,
 
         HG_Node node_selected = nodes[node_idx_selected];
         node_idx_seen[node_idx_selected] = true;
-
-        current_partitions.push_back(findPartition(edges, nodes, node_selected, node_idx_seen));
-        BFS_counter++;
-        // add each Hyperedge containing node to queue
+        // find the partition with the the selected node belongs to
+        findPartition(edges, nodes, node_selected, node_idx_seen);
     }
-    return current_partitions;
+    return;
 }
 
 
 
 
-vector<int> Hypergraph::findPartition(const vector<HG_Edge>& edges_considered, const vector<HG_Node>& nodes_considered,
+void Hypergraph::findPartition(const vector<HG_Edge>& edges_considered, const vector<HG_Node>& nodes_considered,
  HG_Node starting_node,  vector<bool>& node_idx_seen)
 {
     vector<bool> edge_idx_seen;
@@ -66,15 +62,13 @@ vector<int> Hypergraph::findPartition(const vector<HG_Edge>& edges_considered, c
     node_partition.push_back(starting_node.getNodeIdx());
     queue<HG_Edge> Q;
     
-    if ((starting_node.getEdgeIdxs()).empty()){
-        cout << "empty edge idx for node idx " << starting_node.getNodeIdx() << endl;
-    }
+    
     // add edges attached to node which haven't been seen before
     for (auto& edge_idx : starting_node.getEdgeIdxs()) {
         
         if (edge_idx_seen[edge_idx] == false) {
             Q.push(edges_considered[edge_idx]);
-            cout << "edge idx to be added " << edge_idx << endl;
+            // cout << "edge idx to be added " << edge_idx << endl;
             edge_partition.push_back(edge_idx);
             edge_idx_seen[edge_idx] = true;
         }
@@ -111,16 +105,16 @@ vector<int> Hypergraph::findPartition(const vector<HG_Edge>& edges_considered, c
         Q.pop();
     }
 
-    if (edge_partition.empty()){
-        cout << "empty edge partition" << endl;
-    }
+    // if (edge_partition.empty()){
+    //     cout << "empty edge partition" << endl;
+    // }
     if (node_partition.empty()){
         cout << "empty node partition" << endl;
     }
 
     Partition_Struct ps = {node_partition, edge_partition};
     PS.push_back(ps);
-    return node_partition;
+    return;
 }
 
 void Hypergraph::printEdges()
@@ -150,12 +144,25 @@ void Hypergraph::printPartitions()
     }
 }
 
-void Hypergraph::partition(const vector<double>& constraints_selected){
-     // reduce graph edges
-    vector<HG_Edge> updated_edges;
-    vector<HG_Node> updated_nodes;
-    updated_edges.resize(HG_edges.size());
-    updated_nodes.resize(HG_nodes.size());
+void Hypergraph::partitionValidity(){
+
+    vector<bool> nodes_seen;
+    nodes_seen.resize(HG_nodes.size(),false);
+    for (auto& partition : PS) {
+        for (auto& node_idx : partition.node_idxs){
+            if (nodes_seen[node_idx] == true){
+                cout << "node idx " << node_idx << " appears in multiple partitions " << endl;
+            }
+            nodes_seen[node_idx] = true;
+        }
+    }
+}
+
+/* Reduce the graph by removing edges based on the constraints relaxed */
+
+
+void Hypergraph::reduceGraph(const vector<double>& constraints_selected,  vector<HG_Edge>& updated_edges, vector<HG_Node>& updated_nodes)
+{
     // copy the original node information
     for (auto& node : HG_nodes){
         updated_nodes[node.getNodeIdx()] = HG_Node{node.getNodeIdx(),node.getEdgeIdxs()};
@@ -177,6 +184,15 @@ void Hypergraph::partition(const vector<double>& constraints_selected){
         updated_edges[constraint_idx] = current_edge_copy;
         constraint_idx++;
     }
+}
+
+void Hypergraph::partition(const vector<double>& constraints_selected){
+     // reduce graph edges
+    vector<HG_Edge> updated_edges;
+    vector<HG_Node> updated_nodes;
+    updated_edges.resize(HG_edges.size());
+    updated_nodes.resize(HG_nodes.size());
+    reduceGraph(constraints_selected,updated_edges,updated_nodes);
     // identify partitions with new edges...
     identifyPartitions(updated_edges, updated_nodes);
 
@@ -185,10 +201,10 @@ void Hypergraph::partition(const vector<double>& constraints_selected){
 int Hypergraph::getLargestPartition()
 {   
     largest_partition = 0;
-    if (!partitions.empty()) {
-        for (auto& partition : partitions) {
-            if (partition.size() > largest_partition) {
-                largest_partition = partition.size();
+    if (!PS.empty()) {
+        for (auto& partition : PS) {
+            if (partition.node_idxs.size() > largest_partition) {
+                largest_partition = partition.node_idxs.size();
             }
         }
     }

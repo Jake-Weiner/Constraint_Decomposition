@@ -341,7 +341,9 @@ namespace LaPSO {
 		std::vector<double> dual_euclid;
 		std::vector<double> perturb_euclid;
 		std::vector<double> timing_tracking;
-		
+		void setDualBoundsLesser(const std::vector<int>& idxs);
+    	void setDualBoundsGreater(const std::vector<int>& idxs);
+    	void setDualBoundsEqual(const std::vector<int>& idxs);
 		Particle best;		///< best solution found so far
 		/// ParticleIter is a convenience class to avoid double dereferencing
 		class ParticleIter  {
