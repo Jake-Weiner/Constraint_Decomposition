@@ -19,7 +19,7 @@ class Variable{
             variable_idx = idx;
         }
 
-        int getVarIndx() {
+        int getVarIndx() const {
             return variable_idx;
         }
 
@@ -42,9 +42,17 @@ class Variable{
         void printInfo(){
             cout << "index = " << variable_idx << " : upper bound = " << upper_bound << " : lower bound = " << lower_bound << endl; 
         }
+
+        inline bool operator< ( const Variable& rhs ) const { 
+            return variable_idx < rhs.getVarIndx(); 
+        };
+
+        inline bool operator> ( const Variable& rhs ) const { 
+            return variable_idx > rhs.getVarIndx();  
+        };
         
     private:
-        double upper_bound = 999999999999;
+        double upper_bound = 1;
         double lower_bound = 0;
         int variable_idx;
 };

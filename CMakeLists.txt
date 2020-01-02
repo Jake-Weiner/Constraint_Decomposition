@@ -28,7 +28,7 @@ link_directories("/home/jake/PhD/Coding_Libraries/cplex/lib/x86-64_linux/static_
 link_directories("/home/jake/PhD/Coding_Libraries/concert/lib/x86-64_linux/static_pic")
 link_directories("/home/jake/PhD/Edge_Disjoint/c++/boost_1_67_0/Build/lib")
 
-add_executable(main_test ${src}/main.cpp ${src}/anyoption.cpp ${src}/CpuTimer.cpp ${src}/LaPSO.cpp ${src}/ConDecomp_LaPSO_Connector.cpp ${src}/DecompMIP.cpp ${src}/Decomp.cpp ${src}/MIP_to_Hypergraph.cpp ${src}/Hypergraph.cpp ${src}/MIP_Fileparser.cpp ${src}/HG_Edge.cpp ${src}/HG_Node.cpp)
+add_executable(main_test ${src}/main.cpp ${src}/MIP_Problem_CPLEX_Solver.cpp ${src}/anyoption.cpp ${src}/CpuTimer.cpp ${src}/LaPSO.cpp ${src}/ConDecomp_LaPSO_Connector.cpp ${src}/DecompMIP.cpp ${src}/Decomp.cpp ${src}/MIP_to_Hypergraph.cpp ${src}/Hypergraph.cpp ${src}/MIP_Fileparser.cpp ${src}/HG_Edge.cpp ${src}/HG_Node.cpp)
 
 target_link_libraries(main_test Pagmo::pagmo concert ilocplex cplex m pthread dl)
 

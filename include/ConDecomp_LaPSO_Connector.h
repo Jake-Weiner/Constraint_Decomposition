@@ -11,7 +11,6 @@
 #include <string>
 #include <map>
 #include <unordered_map>
-#include <ilcplex/ilocplex.h>
 
 using namespace LaPSO;
 using namespace std;

@@ -106,17 +106,17 @@ void ConDecomp_LaPSO_Connector::initSubproblems(const vector<Partition_Struct>& 
                     int var_idx = term.first;
                     double var_coeff = term.second;
                     int var_idx_in_sp = originalVarIdx_to_subproblemVarIdx[var_idx];
-                    constraint_exp += (var_coeff * var_idx_in_sp);
+                    constraint_exp += (var_coeff * subproblem_vars_cplex[var_idx_in_sp]);
                 }
             
                 if (constraint.getBoundType() == Greater) {
-                    IloRange r1(env, constraint_exp >= constraint.getRHS());
+                    IloRange r1(env, constraint.getRHS(), constraint_exp, INF);
                     subproblem_constraints_cplex.add(r1);
                 } else if (constraint.getBoundType() == Equal) {
-                    IloRange r1(env, constraint_exp == constraint.getRHS());
+                    IloRange r1(env, constraint.getRHS() , constraint_exp, constraint.getRHS() );
                     subproblem_constraints_cplex.add(r1);
                 } else if (constraint.getBoundType() == Less) {
-                    IloRange r1(env, constraint_exp <= constraint.getRHS());
+                    IloRange r1(env, -INF,constraint_exp ,constraint.getRHS());
                     subproblem_constraints_cplex.add(r1);
                 }
             }
@@ -138,17 +138,18 @@ void ConDecomp_LaPSO_Connector::initSubproblems(const vector<Partition_Struct>& 
 
 Status ConDecomp_LaPSO_Connector::reducedCost(const Particle& p, DblVec& redCost)
 {
-
+    
     redCost = original_costs;
+    // DblVec red_cost_temp = original_costs;
+    // redCost = original_costs;
     // for each constraint, update the red cost by dual[i] * coeff in constraint
     for (auto& constraint : OP.constraints){
         int constraint_idx = constraint.getConIdx();
         for (auto& con_term : constraint.getConTerms()){
             int var_idx = con_term.first;
             double var_coeff = con_term.second;
-            redCost[var_idx] -= (p.dual[constraint_idx] *(var_coeff));
+            redCost[var_idx] += p.dual[constraint_idx] *(-1 * var_coeff);
         }
-
     }
     return OK;
 }
@@ -221,6 +222,19 @@ void ConDecomp_LaPSO_Connector::updateParticleLB(ConDecomp_LaPSO_ConnectorPartic
         lb += (p.dual[dual_idx] * constraint_bound);
     }
     p.lb = lb;
+    
+    // double lb_test = 0;
+    // for (int var_idx = 0; var_idx < p.x.size(); var_idx++){
+    //     lb_test += (p.x[var_idx] * original_costs[var_idx]);
+    // }
+
+    // for (int dual_idx = 0; dual_idx < p.dual.size(); dual_idx++){
+    //     double constraint_bound = OP.constraints[dual_idx].getRHS();
+    //     lb_test += (p.dual[dual_idx] * p.viol[dual_idx]);
+    // }
+
+    // cout << "reduced costs lb = " << p.lb << " : violation lb = " << lb_test << endl ;
+    // check that ~cx + \lambda(bounds) = cx + \lambda(viol)
 }
 
 // loop through all constraints, calculate Ax, viol = bound - Ax
@@ -237,7 +251,7 @@ void ConDecomp_LaPSO_Connector::updateParticleViol(ConDecomp_LaPSO_ConnectorPart
             double var_coeff = con_term.second;
             constraint_value += (var_coeff * p.x[var_idx]);
         }
-        cout << "constraint value is "<< constraint_value << " constraint bound is " << constraint_bound << endl;
+        // cout << "constraint value is "<< constraint_value << " constraint bound is " << constraint_bound << endl;
         p.viol[constraint_idx] = constraint_bound - constraint_value;
     }
 }

@@ -62,6 +62,11 @@ class Constraint{
 
        void printInfo(){
             cout << "index = " << constraint_idx << " : Bound Type = " << boundtypes_strings[bt] << " : RHS = " << RHS << endl;
+            cout << "constraint is: ";
+            for (auto& term : constraint_terms){
+                cout << term.second << "*" <<  term.first << " ";
+            }
+            cout << endl;
         }
 
         vector<pair<int,double>> getConTerms(){

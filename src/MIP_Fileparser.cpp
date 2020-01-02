@@ -189,7 +189,6 @@ string extractObjSymbol(vector<string>& line_split){
 
 void MIP_Fileparser::createConstraint(const vector<string>& line_split, int& current_constraint_number)
 {   
-
     string constraint_name = line_split[1];
     MII.addConstraintName(constraint_name, current_constraint_number);
     MII.addConstraintIdx(current_constraint_number, constraint_name);
@@ -217,29 +216,23 @@ void MIP_Fileparser::extractVariableInfo(const vector<string>& line_split, const
             int edge_constraint_idx = MII.getConstraintIdx(constraint_name);
             double var_coeff;
             try{
-                var_coeff = double(stol(line_split[i + 1]));
+                var_coeff = stod(line_split[i + 1]);
             }
             catch(...){
                 cout << "error with var coeff parsing " << endl;
                 cout << "line_split[i+1] = " << line_split[i+1] << endl;
             }
-
             int var_idx = MII.getVariableIdx(variable_name);
             pair<int,double> con_term = {var_idx, var_coeff};
             MP.constraints[edge_constraint_idx].addConTerm(con_term);
             MP.constraints[edge_constraint_idx].addVarIdx(var_idx);
-            // MP.constraints[edge_constraint_idx].addVarCoeff(var_coeff);
         }
 
         if (objFnCheck(line_split[i],obj_function_symbol)) {
-            
             int obj_var_idx = MII.getVariableIdx(variable_name);
-            double obj_var_coeff =  double(stoi(line_split[i + 1]));
+            double obj_var_coeff =  stod(line_split[i + 1]);
             pair<int,double> objective_term = {obj_var_idx, obj_var_coeff};
             MP.addObjTerm(objective_term);
-            // MP.addObjVarIdx(MII.getVariableIdx(variable_name));
-            // double var_coeff = double(stoi(line_split[i + 1]));
-            // MP.addObjVarCoeff(var_coeff);
         }
     }
 }
@@ -251,7 +244,7 @@ void MIP_Fileparser::extractRHSInfo(const vector<string>& line_split)
         if (MII.constraintNameExists(line_split[i])) {
             string constraint_name = line_split[i];
             int constraint_idx = MII.getConstraintIdx(constraint_name);
-            double bound = double(stoi(line_split[i+1]));
+            double bound = stod(line_split[i+1]);
             MP.constraints[constraint_idx].setRHS(bound);
         }
     }
@@ -273,7 +266,7 @@ void MIP_Fileparser::extractBoundsInfo(const vector<string>& line_split)
             int var_idx = MII.getVariableIdx(var_name);
             double bound;
             try{
-                bound = double(stoi(line_split[i+1]));
+                bound = stod(line_split[i+1]);
             }
             catch(...){
                 cout << "line_split[i+1] = " << line_split[i+1] << endl;
@@ -297,7 +290,6 @@ void MIP_Fileparser::parserMps(string filename)
     ifstream input(filename);
     int current_constraint_number = 0;
     int current_var_number = 0;
-
     bool variableLines = false;
     bool RHSLines = false;
     bool Bounds = false;
@@ -311,9 +303,9 @@ void MIP_Fileparser::parserMps(string filename)
             }
             trim(line);
             vector<string> line_split;
-
             boost::split(line_split, line, boost::is_any_of(" \t"), boost::token_compress_on);
 
+            // ENDATA
             if (line_split[0].find("ENDATA") != std::string::npos){
                 break;
             }
@@ -322,14 +314,12 @@ void MIP_Fileparser::parserMps(string filename)
             if (ObjFnSymbolCheck(line_split) == true){
                 obj_function_symbol = extractObjSymbol(line_split);
             }
-
             // check for constraints - Exact, Less, Greater
             if (checkForConstraint(line_split) == true) {
                 createConstraint(line_split, current_constraint_number);
             }
 
             // ROWS
-
             // variables start after COLUMNS line
             if (variablesBegin(line_split) == true) {
                 variableLines = true;
@@ -347,7 +337,7 @@ void MIP_Fileparser::parserMps(string filename)
                     continue;
                 }
                 string variable_name = line_split[0];
-                // check if variable has been seen
+                // check if variable name has been seen - create new variable if not
                 if (MII.varNameExists(variable_name) == false) {
                     MII.addVariableName(variable_name, current_var_number);
                     MII.addVariableIdx(current_var_number, variable_name);
@@ -377,9 +367,6 @@ void MIP_Fileparser::parserMps(string filename)
             if (Bounds == true){
                 extractBoundsInfo(line_split);
             }
-
-            
-
         }
     }
     MP.number_variables = current_var_number;
@@ -389,8 +376,7 @@ void MIP_Fileparser::parserMps(string filename)
 void MIP_Fileparser::printConstraints(){
     
     for (auto& it: MII.constraint_to_idx) {
-
-    cout << "Constraint Name - " << it.first << " Constraint IDX - " << it.second << endl;
+        cout << "Constraint Name - " << it.first << " Constraint IDX - " << it.second << endl;
     }
 
 }
@@ -398,6 +384,6 @@ void MIP_Fileparser::printConstraints(){
 void MIP_Fileparser::printVariables(){
     
     for (auto& it: MII.var_to_idx) {
-    cout << "Variable Name - " << it.first << " Variable IDX - " << it.second << endl;
+        cout << "Variable Name - " << it.first << " Variable IDX - " << it.second << endl;
     }
 }
