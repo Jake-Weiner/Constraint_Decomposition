@@ -9,7 +9,11 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "/home/jake/PhD/Decomposition/Constraint_Decomposition/main_test",
-            "args": [],
+            "args": ["--input_filename=/home/jake/PhD/Decomposition/Constraint_Decomposition/test_input/neos-2657525-crna (1).mps"
+            , "--subproblem_var_prop=0.5"
+            ,"--output_stats_filename=/home/jake/PhD/Decomposition/Constraint_Decomposition/output/Preliminary_Tests/neos-2657525-crna (1).mps/stats.txt"
+        , "--output_lb_filename=/home/jake/PhD/Decomposition/Constraint_Decomposition/output/Preliminary_Tests/neos-2657525-crna (1).mps/LB.csv"
+    ,"--nsga_gen=300"],
             "stopAtEntry": true,
             "cwd": "${workspaceFolder}",
             "environment": [],

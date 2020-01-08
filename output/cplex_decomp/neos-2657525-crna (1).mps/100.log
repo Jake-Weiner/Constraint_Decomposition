@@ -1,0 +1,83 @@
+CPXPARAM_TimeLimit                               50
+CPXPARAM_Threads                                 4
+Tried aggregator 1 time.
+MIP Presolve eliminated 0 rows and 3439 columns.
+MIP Presolve modified 3420 coefficients.
+Reduced MIP has 3963 rows, 5582 columns, and 40232 nonzeros.
+Reduced MIP has 5582 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.06 sec. (19.16 ticks)
+Found incumbent of value 342.000000 after 0.23 sec. (189.18 ticks)
+Probing time = 0.03 sec. (2.91 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 3963 rows, 5582 columns, and 40232 nonzeros.
+Reduced MIP has 5582 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.04 sec. (23.35 ticks)
+Probing time = 0.01 sec. (3.64 ticks)
+Clique table members: 524.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: deterministic, using up to 4 threads.
+Root relaxation solution time = 1.62 sec. (504.99 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                          342.0000        0.0000           100.00%
+*     0+    0                          314.0000        0.0000           100.00%
+*     0+    0                          278.0000        0.0000           100.00%
+*     0+    0                          250.0000        0.0000           100.00%
+      0     0        0.0000  2741      250.0000        0.0000        6  100.00%
+*     0+    0                          231.0000        0.0000           100.00%
+      0     0        0.0000  3222      231.0000     Cuts: 958     7343  100.00%
+
+Cover cuts applied:  541
+Flow cuts applied:  346
+Mixed integer rounding cuts applied:  376
+Zero-half cuts applied:  81
+Lift and project cuts applied:  3
+
+Root node processing (before b&c):
+  Real time             =   50.01 sec. (21921.35 ticks)
+Parallel b&c, 4 threads:
+  Real time             =    0.00 sec. (0.00 ticks)
+  Sync time (average)   =    0.00 sec.
+  Wait time (average)   =    0.00 sec.
+                          ------------
+Total (root+branch&cut) =   50.01 sec. (21921.35 ticks)
+Solution status = Feasible
+Solution value  = 231
+Solution vector = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+0, 1, 0, 1, 1, 1, 1, 0, 0, 1,
+1, 0, 1, 0, 1, 1, 0, 1, 1, 1,
+1, 1, 1, 1, 1, 1, 1, 0, 0, 1,
+1, 0, 1, 1, 1, 0, 1, 1, 1, 0,
+1, 1, 1, 1, 1, 0, 1, 0, 1, 1,
+1, 1, 1, 1, 1, 1, 0, 0, 1, 1,
+1, 0, 1, 1, 1, 1, 1, 0, 1, 1,
+1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+1, 0, 1, 1, 1, 1, 0, 1, 1, 1,
+1, 1, 0, 1, 0, 1, 1, 0, 1, 1,
+1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+1, 0, 1, 1, 1, 0, 1, 1, 0, 1,
+1, 0, 1, 0, 1, 1, 0, 1, 1, 1,
+1, 1, 1, 1, 0, 1, 1, 1, 1, 1,
+1, 1, 1, 1, 0, 0, 1, 0, 0, 1,
+0, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+0, 1, 1, 1, 1, 0, 0, 0, 1, 1,
+0, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+0, 0, 0, 1, 0, 1, 1, 0, 0, 0,
+0, 1, 0, 0, 0, 1, 1, 0, 0, 0,
+1, 1, 0, 1, 0, 1, 1, 0, 1, 0,
+0, 0, 0, 0, 1, 0, 1, 0, 1, 0,
+0, 0, 0, 0, 0, 0, 1, 0, 0, 1,
+1, 0, 0, 1, 1, 0, 0, 0, 0, 0,
+0, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+1, 0, 1, 1, 0, 0, 1, 1, 0, 0,
+0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
+0, 0, 1, 0, 0, 1, 1, 0, 1, 0,
+1, 0]

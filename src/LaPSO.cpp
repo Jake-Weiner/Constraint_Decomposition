@@ -48,6 +48,8 @@ void Param::parse(int argc, const char** argv)
     parser.setOption("absGap");
     parser.setOption("relGap");
     parser.setOption("nCPU");
+    parser.setOption("printLB");
+    parser.setOption("LBOutputFilename");
     if (argc == -1) // abuse of function
         parser.processFile(*argv);
     else
@@ -90,6 +92,10 @@ void Param::parse(int argc, const char** argv)
         relGap = atof(parser.getValue("relGap"));
     if (parser.getValue("nCPU"))
         nCPU = std::max(1, atoi(parser.getValue("nCPU")));
+    if (parser.getValue("printLB"))
+        printLB = atoi(parser.getValue("printLB"));
+    if (parser.getValue("LBOutputFilename"))
+        LBOutputFilename = parser.getValue("LBOutputFilename");
 }
 void Param::parse(const char* filename) { parse(-1, &filename); }
 void Particle::resize(size_t numVar, size_t numConstr)
@@ -119,25 +125,26 @@ Problem::Problem(int nVar, int nConstr)
     best.isFeasible = false;
     best.perturb.resize(nVar, 0.0);
     best.dual.resize(nConstr, 0.0);
-
 }
 
-void Problem::setDualBoundsEqual(const std::vector<int>& idxs){
-    for (auto& idx : idxs){
+void Problem::setDualBoundsEqual(const std::vector<int>& idxs)
+{
+    for (auto& idx : idxs) {
         dualLB[idx] = -INF;
         dualUB[idx] = INF;
     }
 }
-void Problem::setDualBoundsLesser(const std::vector<int>& idxs){
+void Problem::setDualBoundsLesser(const std::vector<int>& idxs)
+{
 
-    for (auto& idx : idxs){
+    for (auto& idx : idxs) {
         dualLB[idx] = -INF;
         dualUB[idx] = 0;
     }
-
 }
-void Problem::setDualBoundsGreater(const std::vector<int>& idxs){
-    for (auto& idx : idxs){
+void Problem::setDualBoundsGreater(const std::vector<int>& idxs)
+{
+    for (auto& idx : idxs) {
         dualLB[idx] = 0;
         dualUB[idx] = INF;
     }
@@ -147,13 +154,29 @@ void Problem::setDualBoundsGreater(const std::vector<int>& idxs){
 void Problem::solve(UserHooks& hooks)
 {
 
-    
     double improv_thresh = 1.01;
     const int lbCheckFreq = 10;
     initialise(hooks); // set up the swarm
     //------------- initial solution for swarm --------------
     if (param.printLevel > 1)
         printf("Initialisation:\n");
+    // initial dual values
+
+     // update final dual min and max values
+    ParticleIter p1(swarm, 0);
+    initial_dual_min = p1->dual.min();
+	initial_dual_max = p1->dual.max();
+
+    for (int idx = 1; idx < param.nParticles; ++idx) {
+        ParticleIter p(swarm, idx);
+        if (p->dual.min() < initial_dual_min){
+            initial_dual_min = p->dual.min();
+        }
+        if (p->dual.max() > initial_dual_max){
+            initial_dual_max = p1->dual.max();
+        }
+    }
+
     DblVec bestLB(param.nParticles);
     IntVec bestIter(param.nParticles, 0);
     std::vector<Uniform> rand(param.nParticles); //
@@ -172,7 +195,7 @@ void Problem::solve(UserHooks& hooks)
                 0, std::numeric_limits<uint32_t>::max()));
         }
         for (int i = 0; i < dsize; ++i) { // check initial point is valid
-        //check the dual values... 
+            //check the dual values...
             if (p->dual[i] < dualLB[i]) {
                 if (param.printLevel)
                     printf("ERROR: initial dual[%d] %.2f below LB %.2f\n",
@@ -237,17 +260,15 @@ void Problem::solve(UserHooks& hooks)
         printf("Initial LB=%g UB=%g\n", best.lb, best.ub);
     int noImproveIter = 0, nReset = 0, maxNoImprove = 1000;
 
-
     int current_lb_time_limits_idx = 0;
     double last_lb_comparison;
     for (nIter = 1; nIter < param.maxIter && cpuTime() < param.maxCPU && wallTime() < param.maxWallTime && status == OK && (best.lb + param.absGap <= best.ub) && fabs(best.ub - best.lb / best.ub) > param.relGap;
          ++nIter) {
 
-
         printf("iter num = %d\n", nIter);
-        printf("best lower bound so far is %f \n" ,  best.lb);
+        printf("best lower bound so far is %f \n", best.lb);
         // cpu time is within the limit
-    
+        best_lb_tracking.push_back(best.lb);
 
         if (param.printLevel > 1 && nIter % param.printFreq == 0)
             printf("Iteration %d --------------------\n", nIter);
@@ -335,7 +356,7 @@ void Problem::solve(UserHooks& hooks)
                 if (hooks.heuristics(*p) == ABORT) {
                     status = ABORT;
                     continue;
-                } 
+                }
             }
             if (param.printLevel > 1 && nIter % param.printFreq == 0) {
                 printf("\tp%02d: LB=%g UB=%g feas=%d minViol=%g\n",
@@ -353,10 +374,8 @@ void Problem::solve(UserHooks& hooks)
                         p->perturb.min(), p->perturb.max());
                 }
             }
-            
-
         }
-       
+
         if (updateBest(hooks, nIter)) {
             noImproveIter = 0;
         } else {
@@ -428,6 +447,21 @@ void Problem::solve(UserHooks& hooks)
         if (param.printLevel && nIter % param.printFreq == 0)
             printf("%2d: LB=%.2f UB=%.2f\n", nIter, best.lb, best.ub);
     }
+
+    // update final dual min and max values
+    ParticleIter p2(swarm, 0);
+    final_dual_min = p2->dual.min();
+	final_dual_max = p2->dual.max();
+
+    for (int idx = 1; idx < param.nParticles; ++idx) {
+        ParticleIter p(swarm, idx);
+        if (p->dual.min() < final_dual_min){
+            final_dual_min = p->dual.min();
+        }
+        if (p->dual.max() > final_dual_max){
+            final_dual_max = p1->dual.max();
+        }
+    }
 }
 
 double Problem::swarmRadius() const
@@ -443,7 +477,7 @@ double Problem::wallTime() const
 void Problem::initialise(UserHooks& hooks)
 {
     nIter = 0;
-    x_total.resize(psize,0);
+    x_total.resize(psize, 0);
     omp_set_num_threads(param.nCPU);
     _wallTime = omp_get_wtime();
     timer.reset();

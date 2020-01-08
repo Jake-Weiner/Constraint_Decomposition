@@ -31,15 +31,14 @@ typedef EdgeVec::const_iterator EdgeIter;
 
 namespace LaPSO {
     const double INF = std::numeric_limits<double>::max();
-    
     /// parameters for use in the algorithm
     struct Param {	
 		/// set some sensible default values
 		Param() : randomSeed(331u),	// default as in Random.h 
-				  subgradFactor(2.0), subgradFmult(0.8), subgradFmin(0.01),
-				  perturbFactor(1e-4), velocityFactor(0.1),globalFactor(1.0),
-				  maxIter(100),maxCPU(INF),maxWallTime(INF),
-				  nParticles(32),printLevel(0),printFreq(10),
+				  subgradFactor(2.0), subgradFmult(0.6), subgradFmin( 0.0001),
+				  perturbFactor(0), velocityFactor(0.1),globalFactor(0.05),
+				  maxIter(10000),maxCPU(100),maxWallTime(INF),
+				  nParticles(1),printLevel(1),printFreq(10),
 				  heurFreq(10),eps(1e-6),absGap(1e-6),relGap(1e-6),nCPU(1)
 			{}
 		/// load commandline arguments to set parameter values.
@@ -95,14 +94,9 @@ namespace LaPSO {
 		/** number of parallel processes to use during solve (best performance
 		 * is number of particles is a multiple of this number) */
 		int nCPU;
-		bool randComm;
-		bool fudge_factor;
-		bool zeroInitial = false;
-		bool particle_tracking;
-		std::string particle_tracking_filename;
-		bool localSearch = false;
-		bool convergence_test = false;
-		std::string convergence_output;
+		bool zeroInitial = true;
+		bool printLB; 
+    	const char* LBOutputFilename;
 		
     };
 
@@ -341,6 +335,11 @@ namespace LaPSO {
 		std::vector<double> dual_euclid;
 		std::vector<double> perturb_euclid;
 		std::vector<double> timing_tracking;
+		double final_dual_min;
+		double final_dual_max;
+		double initial_dual_min;
+		double initial_dual_max;
+
 		void setDualBoundsLesser(const std::vector<int>& idxs);
     	void setDualBoundsGreater(const std::vector<int>& idxs);
     	void setDualBoundsEqual(const std::vector<int>& idxs);

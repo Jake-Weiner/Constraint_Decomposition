@@ -1,0 +1,6 @@
+Size of original Problem: 524
+Size of largest subproblem: 260
+Number of Constraints in original problem: 342
+Number of Constraints relaxed: 30
+Range of Initial Duals: 0 - 0
+Range of Final Duals: -2.10516e-08 - 0

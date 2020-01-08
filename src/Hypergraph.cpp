@@ -9,18 +9,18 @@
 
 using namespace std;
 
-void Hypergraph::identifyPartitions(const vector<HG_Edge>& edges, const vector<HG_Node>& nodes)
+void Hypergraph::identifyPartitions(const vector<HG_Node>& nodes)
 {
 
-    // test for empty edges
-    if (edges.empty()) {
-        cout << "no edges selected to identify partitions" << endl;
-        return;
-    }
+    // // test for empty edges
+    // if (HG_edges.empty()) {
+    //     cout << "no edges selected to identify partitions" << endl;
+    //     return;
+    // }
 
     // List keeping track of seen edges
     vector<bool> edge_idx_seen;
-    edge_idx_seen.resize(edges.size(), false);
+    edge_idx_seen.resize(HG_edges.size(), false);
     // List keeping track of nodes seen
     vector<bool> node_idx_seen;
     node_idx_seen.resize(nodes.size(), false);
@@ -43,7 +43,7 @@ void Hypergraph::identifyPartitions(const vector<HG_Edge>& edges, const vector<H
         HG_Node node_selected = nodes[node_idx_selected];
         node_idx_seen[node_idx_selected] = true;
         // find the partition with the the selected node belongs to
-        findPartition(edges, nodes, node_selected, node_idx_seen);
+        findPartition(nodes, node_selected, node_idx_seen);
     }
     return;
 }
@@ -51,11 +51,11 @@ void Hypergraph::identifyPartitions(const vector<HG_Edge>& edges, const vector<H
 
 
 
-void Hypergraph::findPartition(const vector<HG_Edge>& edges_considered, const vector<HG_Node>& nodes_considered,
+void Hypergraph::findPartition(const vector<HG_Node>& nodes_considered,
  HG_Node starting_node,  vector<bool>& node_idx_seen)
 {
     vector<bool> edge_idx_seen;
-    edge_idx_seen.resize(edges_considered.size(), false);
+    edge_idx_seen.resize(HG_edges.size(), false);
     vector<int> node_partition;
     vector<int> edge_partition;
     
@@ -67,7 +67,7 @@ void Hypergraph::findPartition(const vector<HG_Edge>& edges_considered, const ve
     for (auto& edge_idx : starting_node.getEdgeIdxs()) {
         
         if (edge_idx_seen[edge_idx] == false) {
-            Q.push(edges_considered[edge_idx]);
+            Q.push(HG_edges[edge_idx]);
             // cout << "edge idx to be added " << edge_idx << endl;
             edge_partition.push_back(edge_idx);
             edge_idx_seen[edge_idx] = true;
@@ -96,7 +96,7 @@ void Hypergraph::findPartition(const vector<HG_Edge>& edges_considered, const ve
                 // add edges attached to the node to the queue if they haven't been seen previously
                 for (auto& edge_idx : new_node.getEdgeIdxs()) {
                     if (edge_idx_seen[edge_idx] == false) {
-                        Q.push(edges_considered[edge_idx]);
+                        Q.push(HG_edges[edge_idx]);
                         edge_idx_seen[edge_idx] = true;
                     }
                 }
@@ -161,7 +161,7 @@ void Hypergraph::partitionValidity(){
 /* Reduce the graph by removing edges based on the constraints relaxed */
 
 
-void Hypergraph::reduceGraph(const vector<double>& constraints_selected,  vector<HG_Edge>& updated_edges, vector<HG_Node>& updated_nodes)
+void Hypergraph::updateNodes(const vector<double>& constraints_selected, vector<HG_Node>& updated_nodes)
 {
     // copy the original node information
     for (auto& node : HG_nodes){
@@ -171,30 +171,29 @@ void Hypergraph::reduceGraph(const vector<double>& constraints_selected,  vector
     if (constraints_selected.size() != HG_edges.size()) {
         cout << "incorrect input vector size of relaxed constraints" << endl;
     }
-    int constraint_idx = 0;
+    int edge_idx = 0;
     for (auto& constraint_decision : constraints_selected) {
-        HG_Edge current_edge_copy = HG_Edge{HG_edges[constraint_idx].getEdgeIdx(),HG_edges[constraint_idx].getNodeIdxs()};
+        HG_Edge current_edge = HG_edges[edge_idx];
         // 1 is edge relaxation
         if (constraint_decision == 1) {
-            for (auto& node_idx : current_edge_copy.getNodeIdxs()){
+            for (auto& node_idx : current_edge.getNodeIdxs()){
                 //remove edge idx attached to node
-                updated_nodes[node_idx].removeEdgeIdx(current_edge_copy.getEdgeIdx());
+                updated_nodes[node_idx].removeEdgeIdx(current_edge.getEdgeIdx());
             }
         }
-        updated_edges[constraint_idx] = current_edge_copy;
-        constraint_idx++;
+        edge_idx++;
     }
 }
 
 void Hypergraph::partition(const vector<double>& constraints_selected){
      // reduce graph edges
-    vector<HG_Edge> updated_edges;
+    
+    PS.clear();
     vector<HG_Node> updated_nodes;
-    updated_edges.resize(HG_edges.size());
     updated_nodes.resize(HG_nodes.size());
-    reduceGraph(constraints_selected,updated_edges,updated_nodes);
+    updateNodes(constraints_selected,updated_nodes);
     // identify partitions with new edges...
-    identifyPartitions(updated_edges, updated_nodes);
+    identifyPartitions(updated_nodes);
 
 }
 

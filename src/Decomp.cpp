@@ -62,7 +62,7 @@ vector<vector<double>> Decomp::greedy_seeding(){
     
     int total_num_nodes = HG.getHGNodes().size();
     int total_num_edges = HG.getHGEdges().size();
-    vector<double> percentages = {0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95,0.96,0.97,0.98};
+    vector<double> percentages = {0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9};
     vector<vector<double>> initial_population;
     for (int i =0; i<percentages.size(); i++){
         vector<double> individual;

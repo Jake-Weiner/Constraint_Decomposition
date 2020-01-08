@@ -20,7 +20,8 @@
 using namespace boost;
 using namespace std;
 
-ConDecomp_LaPSO_Connector::ConDecomp_LaPSO_Connector(MIP_Problem& original_problem, const vector<Partition_Struct>& partitions, const bool& printing)
+ConDecomp_LaPSO_Connector::ConDecomp_LaPSO_Connector(MIP_Problem& original_problem, const vector<Partition_Struct>& partitions, 
+    const bool& printing)
 {   
     this->OP = original_problem;
     this->printing = printing;
@@ -154,12 +155,32 @@ Status ConDecomp_LaPSO_Connector::reducedCost(const Particle& p, DblVec& redCost
     return OK;
 }
 
-void solveSubproblemCplex(CPLEX_MIP_Subproblem& sp, DblVec& rc, IntVec& x)
+void ConDecomp_LaPSO_Connector::solveSubproblemCplex(CPLEX_MIP_Subproblem& sp, DblVec& rc, IntVec& x)
 {
 
     // cout << "variables size is " << sp.variables.getSize() << endl;
     // cout << "num variables is " << sp.num_subproblem_vars << endl;
     
+    //if subproblem size is 1 solve without cplex
+    if (sp.variables.getSize() == 1){
+        int original_var_idx = sp.subproblemVarIdx_to_originalVarIdx[0];
+        double coeff = rc[original_var_idx];
+        // if negative coeff, set to max var bound
+        Variable var = OP.getVariable(original_var_idx);
+        double upper_bound = var.getUB();
+        double lower_bound = var.getLB();
+
+        if (coeff < 0){
+            x[original_var_idx] = upper_bound;
+        }
+        else if (coeff > 0){
+            x[original_var_idx] = lower_bound;
+        }
+        else{
+            x[original_var_idx] = 0;
+        }
+        return;
+    }
     // add in objective function to the model...
     IloExpr obj_exp(sp.env);
     for (int i = 0; i < sp.variables.getSize(); i++) {
@@ -176,7 +197,7 @@ void solveSubproblemCplex(CPLEX_MIP_Subproblem& sp, DblVec& rc, IntVec& x)
     sp.model.add(obj_fn);
 
     IloCplex cplex(sp.model);
-    cplex.setParam(IloCplex::Threads, 4); // solve using 1 thread only
+    cplex.setParam(IloCplex::Threads, 1); // solve using 1 thread only
     cplex.setOut(sp.env.getNullStream());
     if (!cplex.solve()) {
         cout << "Failed to optimize LP" << endl;

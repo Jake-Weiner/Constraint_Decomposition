@@ -420,6 +420,33 @@ src/MIP_to_Hypergraph.cpp.s:
 	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/MIP_to_Hypergraph.cpp.s
 .PHONY : src/MIP_to_Hypergraph.cpp.s
 
+src/Param.o: src/Param.cpp.o
+
+.PHONY : src/Param.o
+
+# target to build an object file
+src/Param.cpp.o:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/Param.cpp.o
+.PHONY : src/Param.cpp.o
+
+src/Param.i: src/Param.cpp.i
+
+.PHONY : src/Param.i
+
+# target to preprocess a source file
+src/Param.cpp.i:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/Param.cpp.i
+.PHONY : src/Param.cpp.i
+
+src/Param.s: src/Param.cpp.s
+
+.PHONY : src/Param.s
+
+# target to generate assembly for a file
+src/Param.cpp.s:
+	$(MAKE) -f CMakeFiles/main_test.dir/build.make CMakeFiles/main_test.dir/src/Param.cpp.s
+.PHONY : src/Param.cpp.s
+
 src/anyoption.o: src/anyoption.cpp.o
 
 .PHONY : src/anyoption.o
@@ -516,6 +543,9 @@ help:
 	@echo "... src/MIP_to_Hypergraph.o"
 	@echo "... src/MIP_to_Hypergraph.i"
 	@echo "... src/MIP_to_Hypergraph.s"
+	@echo "... src/Param.o"
+	@echo "... src/Param.i"
+	@echo "... src/Param.s"
 	@echo "... src/anyoption.o"
 	@echo "... src/anyoption.i"
 	@echo "... src/anyoption.s"

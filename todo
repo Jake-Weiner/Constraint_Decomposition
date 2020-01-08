@@ -1,0 +1,38 @@
+write down systematic tests/experiements to implement 
+
+experimental set - up
+
+Inputs:
+filename
+largest subproblem limit
+Lagrangian Multipliers
+
+
+Outputs: 
+
+Lower Bound plot
+size of problem before - size of largest subproblem
+number of constraints before - number of constraints relaxed
+range of initial duals
+range of final duals
+
+
+Size of original Problem:
+Size of largest subproblem:
+Number of Constraints in original problem:
+Number of Constraints relaxed:
+Range of Initial Duals: xxx - xxx
+Range of Final Duals: xxx - xxx
+include size of largest subproblem and number of constraints relaxed in each LB tracking...
+
+
+finish making changes to mip model constraints in decompmip
+Need to run cplex to get optimal decomposition for 30,40,50 % of the max subproblem. 
+Test output vector to see if it results in largest subproblem of 100 variables.
+get lower bounds sorted...
+
+
+
+
+
+

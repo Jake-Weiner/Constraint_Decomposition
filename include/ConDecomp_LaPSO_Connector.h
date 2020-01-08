@@ -37,7 +37,8 @@ class ConDecomp_LaPSO_Connector : public LaPSO::UserHooks {
 
 public:
     
-    ConDecomp_LaPSO_Connector(MIP_Problem& original_problem, const vector<Partition_Struct>& partitions, const bool& printing);
+    ConDecomp_LaPSO_Connector(MIP_Problem& original_problem, const vector<Partition_Struct>& partitions, 
+    const bool& printing);
     //void solve_ConDecomp_LaPSO_Connector(ConDecomp_LaPSO_ConnectorParticle &p);
     int nsolves;		// number of times ConDecomp_LaPSO_Connector was solved
     int maxsolves;		// abort after this many
@@ -60,6 +61,7 @@ private:
     vector<CPLEX_MIP_Subproblem> MS;
     void initSubproblems(const vector<Partition_Struct>&);
     void initOriginalCosts();
+    void solveSubproblemCplex(CPLEX_MIP_Subproblem& sp, DblVec& rc, IntVec& x);
     bool printing;
     MIP_Problem OP;
     DblVec original_costs;

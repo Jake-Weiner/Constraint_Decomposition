@@ -1,5 +1,5 @@
 #include "DecompMIP.h"
-
+#include <limits>
 
 using namespace std;
 
@@ -83,7 +83,8 @@ int num_subproblems, bool print, const char* outfile, const int solver_time){
                 int ni = node_idxs_con_i.size();
                 int first_index = node_idxs_con_i[0]; // j0 in constraint
                 RHS_var_nonrelaxedcon_exp = (ni*node_var[k][first_index]) - (ni* constraint_var[i]);
-                constraints.add((LHS_var_nonrelaxedcon_exp - RHS_var_nonrelaxedcon_exp)>=0);
+                IloRange same_group_exp_con(env, 0,LHS_var_nonrelaxedcon_exp - RHS_var_nonrelaxedcon_exp, numeric_limits<int>::max());
+                constraints.add(same_group_exp_con);
             }
         }
 
@@ -96,7 +97,8 @@ int num_subproblems, bool print, const char* outfile, const int solver_time){
                 LHS_symmetry_con += node_var[k-1][j];
                 RHS_symmetry_con += node_var[k][j];
             }
-            constraints.add((RHS_symmetry_con - LHS_symmetry_con) >= 0);
+            IloRange symm_exp_con(env, 0,RHS_symmetry_con - LHS_symmetry_con, numeric_limits<int>::max());
+            constraints.add(symm_exp_con);
         }
 
         model.add(constraints);
@@ -122,10 +124,13 @@ int num_subproblems, bool print, const char* outfile, const int solver_time){
 
 
         IloNumArray vals(env);
+        cplex.getValues(vals, constraint_var);
         //populate y and return it
         cout << "Solution status = " << cplex.getStatus() << endl;
         cout << "Solution value  = " << cplex.getObjValue() << endl;
-        cplex.getValues(vals, constraint_var);
+        cout << "Solution vector = " << endl;
+        cout << vals << endl;
+        
 
         *stdout=fp_old;
 
